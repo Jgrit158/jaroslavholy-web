@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaroslav Holý — Visual Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --bg: #f2f0eb;
+  --black: #0a0a0a;
+  --white: #f2f0eb;
+  --mid: #888;
+  --light: #d8d5ce;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--black);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s, width 0.25s, height 0.25s, opacity 0.2s;
+  opacity: 0.4;
+}
+body:hover .cursor { opacity: 1; }
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 40px;
+  height: 64px;
+  border-bottom: 1px solid rgba(10,10,10,0.12);
+  background: rgba(242,240,235,0.92);
+  backdrop-filter: blur(12px);
+}
+
+.nav-logo {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.nav-center {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-center a {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-center a:hover { color: var(--black); }
+
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-cta {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--black);
+  padding: 9px 22px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.75; }
+
+/* HERO */
+.hero {
+  padding-top: 64px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.hero-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid rgba(10,10,10,0.12);
+  flex: 1;
+}
+
+.hero-left {
+  padding: 80px 40px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(10,10,10,0.12);
+}
+
+.hero-tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: auto;
+}
+.hero-tag::before {
+  content: '';
+  display: inline-block;
+  width: 20px; height: 1px;
+  background: var(--mid);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 9vw, 136px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  text-transform: uppercase;
+  margin: 40px 0 48px;
+}
+
+.hero-title .line-italic {
+  font-weight: 300;
+  font-style: italic;
+  display: block;
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-meta-num {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  line-height: 1;
+}
+
+.hero-meta-label {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.hero-meta-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(10,10,10,0.15);
+}
+
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  background: var(--black);
+  min-height: 540px;
+}
+
+.hero-img-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0.15;
+}
+
+.hero-img-ph span {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.hero-label-right {
+  position: absolute;
+  top: 40px; right: 32px;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(242,240,235,0.4);
+  writing-mode: vertical-rl;
+}
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-bottom: 1px solid rgba(10,10,10,0.12);
+}
+
+.hero-bottom-item {
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-right: 1px solid rgba(10,10,10,0.12);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+}
+.hero-bottom-item:last-child { border-right: none; }
+.hero-bottom-item:hover { color: var(--black); background: rgba(10,10,10,0.03); }
+.hero-bottom-item .hbi-num { color: var(--light); font-size: 9px; }
+.hero-bottom-item .hbi-arrow { margin-left: auto; font-size: 14px; transition: transform 0.2s; }
+.hero-bottom-item:hover .hbi-arrow { transform: translate(3px,-3px); }
+
+/* TICKER */
+.ticker {
+  overflow: hidden;
+  padding: 16px 0;
+  background: var(--black);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.ticker-track {
+  display: flex;
+  animation: tick 25s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes tick {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242,240,235,0.35);
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ticker-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(242,240,235,0.2);
+  flex-shrink: 0;
+}
+
+/* WORK GRID */
+.work {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: none;
+}
+
+.work-cell {
+  border-right: 1px solid rgba(10,10,10,0.1);
+  border-bottom: 1px solid rgba(10,10,10,0.1);
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1/1.1;
+  background: #e0ddd6;
+  cursor: none;
+}
+.work-cell:nth-child(3n) { border-right: none; }
+
+.work-ph {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--light);
+  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.work-cell:hover .work-ph { transform: scale(1.04); }
+
+.work-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+}
+
+.work-cell:hover .work-overlay { opacity: 0.88; }
+
+.work-client {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.work-type {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(242,240,235,0.45);
+}
+
+/* SECTION DIVIDER */
+.section-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  padding: 64px 40px 40px;
+  border-bottom: 1px solid rgba(10,10,10,0.12);
+}
+
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 16px; height: 1px;
+  background: currentColor;
+  display: block;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+  color: var(--black);
+}
+
+.section-title em {
+  font-weight: 300;
+  font-style: italic;
+}
+
+.section-link {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--black);
+  transition: opacity 0.2s;
+}
+.section-link:hover { opacity: 0.5; }
+
+/* SERVICES */
+.services {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+}
+
+.service-item {
+  padding: 48px 40px;
+  border-right: 1px solid rgba(10,10,10,0.1);
+  text-decoration: none;
+  display: block;
+  transition: background 0.2s;
+  position: relative;
+}
+.service-item:last-child { border-right: none; }
+.service-item:hover { background: var(--black); }
+.service-item:hover .svc-num,
+.service-item:hover .svc-name,
+.service-item:hover .svc-desc,
+.service-item:hover .svc-arrow { color: var(--white); }
+.service-item:hover .svc-desc { color: rgba(242,240,235,0.45); }
+
+.svc-num {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--light);
+  margin-bottom: 40px;
+  transition: color 0.2s;
+}
+
+.svc-name {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+
+.svc-desc {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--mid);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+
+.svc-arrow {
+  position: absolute;
+  top: 48px; right: 40px;
+  font-size: 20px;
+  color: var(--light);
+  transition: transform 0.2s, color 0.2s;
+}
+.service-item:hover .svc-arrow { transform: translate(4px,-4px); }
+
+/* CLIENTS STRIP */
+.clients-strip {
+  border-top: 1px solid rgba(10,10,10,0.12);
+  border-bottom: 1px solid rgba(10,10,10,0.12);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.clients-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mid);
+  white-space: nowrap;
+  margin-right: 48px;
+  padding-right: 48px;
+  border-right: 1px solid rgba(10,10,10,0.12);
+}
+
+.clients-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 0;
+  align-items: center;
+}
+
+.client-tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  padding: 0 24px;
+  border-right: 1px solid rgba(10,10,10,0.12);
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+.client-tag:hover { opacity: 1; }
+.client-tag:last-child { border-right: none; }
+
+/* TESTIMONIALS */
+.testimonials {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  border-top: 1px solid rgba(10,10,10,0.12);
+}
+
+.testimonials-left {
+  padding: 64px 40px;
+  border-right: 1px solid rgba(10,10,10,0.12);
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.testimonials-heading {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+  color: var(--white);
+}
+
+.testimonials-heading em {
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(242,240,235,0.4);
+  display: block;
+}
+
+.testimonials-count {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(242,240,235,0.3);
+}
+
+.testimonials-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-item {
+  padding: 48px 40px;
+  border-bottom: 1px solid rgba(10,10,10,0.1);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: start;
+}
+.testimonial-item:last-child { border-bottom: none; }
+
+.t-quote {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--black);
+  margin-bottom: 20px;
+}
+
+.t-author {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.t-role {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  margin-top: 3px;
+}
+
+.t-company {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--light);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* CTA */
+.cta {
+  background: var(--black);
+  padding: 96px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  color: var(--white);
+}
+
+.cta-title em {
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(242,240,235,0.3);
+  display: block;
+}
+
+.cta-right {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.cta-desc {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(242,240,235,0.5);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.cta-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cta-contact-link {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242,240,235,0.15);
+  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: color 0.2s, border-color 0.2s;
+}
+.cta-contact-link:hover { color: rgba(242,240,235,0.5); border-color: rgba(242,240,235,0.05); }
+.cta-contact-link span { font-size: 12px; opacity: 0.3; }
+
+.cta-btn {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--white);
+  padding: 16px 32px;
+  text-decoration: none;
+  display: inline-block;
+  width: fit-content;
+  transition: opacity 0.2s;
+}
+.cta-btn:hover { opacity: 0.75; }
+
+/* FOOTER */
+footer {
+  background: var(--black);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 28px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-copy {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(242,240,235,0.2);
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+}
+
+.footer-links a {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(242,240,235,0.3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-tag { animation: fadeUp 0.7s ease 0.05s both; }
+.hero-title { animation: fadeUp 0.7s ease 0.15s both; }
+.hero-meta { animation: fadeUp 0.7s ease 0.3s both; }
+.hero-bottom { animation: fadeUp 0.7s ease 0.4s both; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Jaroslav Holý</a>
+  <div class="nav-center">
+    <a href="#prace">Práce</a>
+    <a href="#sluzby">Služby</a>
+    <a href="#omne">O mně</a>
+  </div>
+  <div class="nav-right">
+    <a href="#kontakt" class="nav-cta">Poptat projekt</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top">
+    <div class="hero-left">
+      <span class="hero-tag">Fotograf & Videograf · Plzeň</span>
+      <h1 class="hero-title">
+        Visual<br>
+        <span class="line-italic">stories</span><br>
+        that sell
+      </h1>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="hero-meta-num">20+</span>
+          <span class="hero-meta-label">let praxe</span>
+        </div>
+        <div class="hero-meta-divider"></div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-num">150+</span>
+          <span class="hero-meta-label">klientů</span>
+        </div>
+        <div class="hero-meta-divider"></div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-num">4</span>
+          <span class="hero-meta-label">specializace</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-ph">
+        <span>Hlavní vizuál</span>
+      </div>
+      <span class="hero-label-right">JH · Visual Studio · 2025</span>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <a href="#" class="hero-bottom-item">
+      <span class="hbi-num">01</span>
+      Produktová foto
+      <span class="hbi-arrow">↗</span>
+    </a>
+    <a href="#" class="hero-bottom-item">
+      <span class="hbi-num">02</span>
+      Promo video
+      <span class="hbi-arrow">↗</span>
+    </a>
+    <a href="#" class="hero-bottom-item">
+      <span class="hbi-num">03</span>
+      Sociální sítě
+      <span class="hbi-arrow">↗</span>
+    </a>
+    <a href="#" class="hero-bottom-item">
+      <span class="hbi-num">04</span>
+      Nemovitosti
+      <span class="hbi-arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span>Produktová fotografie</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Promo video</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Sociální sítě</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Nemovitosti</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Brand building</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Foto kurzy</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Produktová fotografie</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Promo video</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Sociální sítě</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Nemovitosti</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Brand building</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Foto kurzy</span>
+  </div>
+</div>
+
+<!-- SELECTED WORK -->
+<div class="section-header" id="prace">
+  <div>
+    <div class="section-eyebrow">Vybraná práce</div>
+    <h2 class="section-title">Selected<br><em>work</em></h2>
+  </div>
+  <a href="#" class="section-link">Celé portfolio ↗</a>
+</div>
+
+<div class="work">
+  <div class="work-cell" style="background:#d4d0c8;">
+    <div class="work-ph">Kolowratovy sady</div>
+    <div class="work-overlay">
+      <div class="work-client">Kolowratovy sady</div>
+      <div class="work-type">Produktová fotografie</div>
+    </div>
+  </div>
+  <div class="work-cell" style="background:#ccc9c0;">
+    <div class="work-ph">City Moto</div>
+    <div class="work-overlay">
+      <div class="work-client">City Moto</div>
+      <div class="work-type">Kampaňová fotografie</div>
+    </div>
+  </div>
+  <div class="work-cell" style="background:#1a1a1a;">
+    <div class="work-ph" style="color:#333;">Sony DADC</div>
+    <div class="work-overlay">
+      <div class="work-client">Sony DADC</div>
+      <div class="work-type">Promo video</div>
+    </div>
+  </div>
+  <div class="work-cell" style="background:#c8c5be;">
+    <div class="work-ph">IBZ</div>
+    <div class="work-overlay">
+      <div class="work-client">IBZ</div>
+      <div class="work-type">Produktová fotografie</div>
+    </div>
+  </div>
+  <div class="work-cell" style="background:#222;">
+    <div class="work-ph" style="color:#333;">Yournia</div>
+    <div class="work-overlay">
+      <div class="work-client">Yournia</div>
+      <div class="work-type">Šperky & lifestyle</div>
+    </div>
+  </div>
+  <div class="work-cell" style="background:#cfcbc4;">
+    <div class="work-ph">WTB</div>
+    <div class="work-overlay">
+      <div class="work-client">WTB</div>
+      <div class="work-type">Produktová fotografie</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section-header" id="sluzby">
+  <div>
+    <div class="section-eyebrow">Služby</div>
+    <h2 class="section-title">What<br><em>I do</em></h2>
+  </div>
+</div>
+
+<div class="services">
+  <a href="#" class="service-item">
+    <div class="svc-num">01</div>
+    <div class="svc-name">Produktová<br>fotografie</div>
+    <div class="svc-desc">E-shop, kampaně,<br>detailní záběry</div>
+    <span class="svc-arrow">↗</span>
+  </a>
+  <a href="#" class="service-item">
+    <div class="svc-num">02</div>
+    <div class="svc-name">Promo &<br>Produkt video</div>
+    <div class="svc-desc">Reklamní videa<br>pro online i TV</div>
+    <span class="svc-arrow">↗</span>
+  </a>
+  <a href="#" class="service-item">
+    <div class="svc-num">03</div>
+    <div class="svc-name">Sociální<br>sítě</div>
+    <div class="svc-desc">Obsah pro Instagram,<br>Facebook, LinkedIn</div>
+    <span class="svc-arrow">↗</span>
+  </a>
+  <a href="#" class="service-item">
+    <div class="svc-num">04</div>
+    <div class="svc-name">Nemovitosti<br>& architektura</div>
+    <div class="svc-desc">Interiéry, exteriéry,<br>360° prohlídky</div>
+    <span class="svc-arrow">↗</span>
+  </a>
+</div>
+
+<!-- CLIENTS -->
+<div class="clients-strip">
+  <span class="clients-label">Klienti</span>
+  <div class="clients-list">
+    <span class="client-tag">Sony DADC</span>
+    <span class="client-tag">Metrostav</span>
+    <span class="client-tag">Billa</span>
+    <span class="client-tag">GXO</span>
+    <span class="client-tag">RE/MAX</span>
+    <span class="client-tag">Pilsen Steel</span>
+    <span class="client-tag">WTB</span>
+    <span class="client-tag">Greensgate</span>
+    <span class="client-tag">Kolowratovy sady</span>
+    <span class="client-tag">IBZ</span>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <div class="testimonials-left">
+    <div class="testimonials-heading">
+      Client<br>
+      <em>words</em>
+    </div>
+    <span class="testimonials-count">03 reference</span>
+  </div>
+  <div class="testimonials-right">
+    <div class="testimonial-item">
+      <div>
+        <p class="t-quote">"Spolupráce probíhala od začátku až do konce naprosto profesionálně. Pan Holý přesně vystihl podstatu našich služeb."</p>
+        <div class="t-author">Lenka Adamová</div>
+        <div class="t-role">Retail Operations Manager</div>
+      </div>
+      <div class="t-company">Sony</div>
+    </div>
+    <div class="testimonial-item">
+      <div>
+        <p class="t-quote">"Opakovaně jsme využili jeho služeb. Dokonale zachytil naše požadavky a dokázal oslovit velké množství sledujících."</p>
+        <div class="t-author">Petra Matušková</div>
+        <div class="t-role">Projektový manažer</div>
+      </div>
+      <div class="t-company">NTKD</div>
+    </div>
+    <div class="testimonial-item">
+      <div>
+        <p class="t-quote">"Do toho co dělá dává srdce. Pokud hledáte originalitu a obrovskou profesionalitu, Jára je jasná volba."</p>
+        <div class="t-author">Lucie Ladmanová</div>
+        <div class="t-role">Kouč osobního rozvoje</div>
+      </div>
+      <div class="t-company">LL</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta" id="kontakt">
+  <h2 class="cta-title">
+    Máte<br>projekt?<br>
+    <em>Pojďme<br>na to.</em>
+  </h2>
+  <div class="cta-right">
+    <p class="cta-desc">Napište mi nebo zavolejte. Ozvu se do 24 hodin a probereme jak vám mohu pomoct vytvořit obsah, který prodává.</p>
+    <div class="cta-contacts">
+      <a href="mailto:holy.jaroslav@gmail.com" class="cta-contact-link">
+        holy.jaroslav@gmail.com
+        <span>Email ↗</span>
+      </a>
+      <a href="tel:+420733120164" class="cta-contact-link">
+        +420 733 120 164
+        <span>Telefon ↗</span>
+      </a>
+    </div>
+    <a href="#" class="cta-btn">Nezávazně poptat ↗</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2025 Jaroslav Holý · IČO 87574381 · Plzeň</span>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Pinterest</a>
+  </div>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+
+function animRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+document.querySelectorAll('a, button, .work-cell, .service-item').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '12px';
+    cursor.style.height = '12px';
+    ring.style.width = '56px';
+    ring.style.height = '56px';
+    ring.style.opacity = '0.25';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '8px';
+    cursor.style.height = '8px';
+    ring.style.width = '36px';
+    ring.style.height = '36px';
+    ring.style.opacity = '0.4';
+  });
+});
+</script>
+</body>
+</html>

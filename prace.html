@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prace - Jaroslav Holy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{--bg:#f2f0eb;--black:#0a0a0a;--white:#f2f0eb;--mid:#888;--light:#d8d5ce;--font-display:'Barlow Condensed',sans-serif;--font-body:'Space Grotesk',sans-serif}
+body{background:var(--bg);color:var(--black);font-family:var(--font-body);font-weight:300;overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:8px;height:8px;background:var(--black);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--black);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 40px;height:64px;border-bottom:1px solid rgba(10,10,10,0.12);background:rgba(242,240,235,0.92);backdrop-filter:blur(12px)}
+.nav-logo{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--black);text-decoration:none}
+.nav-center{display:flex;gap:40px}
+.nav-center a{font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .2s}
+.nav-center a:hover,.nav-center a.active{color:var(--black)}
+.nav-right{display:flex;justify-content:flex-end;align-items:center}
+.nav-cta{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:var(--black);padding:9px 22px;text-decoration:none}
+.portfolio-header{padding:120px 40px 64px;border-bottom:1px solid rgba(10,10,10,0.12);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+.ph-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.ph-eyebrow::before{content:'';width:16px;height:1px;background:currentColor;display:block}
+.ph-title{font-family:var(--font-display);font-size:clamp(56px,7vw,96px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.92;color:var(--black)}
+.ph-title em{font-weight:300;font-style:italic}
+.ph-desc{font-size:14px;font-weight:300;color:var(--mid);line-height:1.7;max-width:400px;align-self:end}
+.filter-bar{display:flex;align-items:center;padding:0 40px;border-bottom:1px solid rgba(10,10,10,0.12);overflow-x:auto}
+.filter-btn{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);background:none;border:none;padding:20px 24px;cursor:none;transition:color .2s;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px}
+.filter-btn:hover{color:var(--black)}
+.filter-btn.active{color:var(--black);border-bottom-color:var(--black)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.work-item{border-right:1px solid rgba(10,10,10,0.1);border-bottom:1px solid rgba(10,10,10,0.1);position:relative;overflow:hidden;aspect-ratio:1/1.1;cursor:none}
+.work-item:nth-child(3n){border-right:none}
+.work-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.work-item:hover img{transform:scale(1.04)}
+.work-overlay{position:absolute;inset:0;background:var(--black);opacity:0;transition:opacity .3s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
+.work-item:hover .work-overlay{opacity:.88}
+.wo-client{font-family:var(--font-display);font-size:28px;font-weight:700;text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:6px}
+.wo-type{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,240,235,0.45)}
+.wo-tag{position:absolute;top:20px;left:20px;font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;background:var(--white);color:var(--black);padding:5px 10px;opacity:0;transition:opacity .3s}
+.work-item:hover .wo-tag{opacity:1}
+footer{background:var(--black);padding:28px 40px;display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,240,235,0.2)}
+.footer-links{display:flex;gap:32px}
+.footer-links a{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,240,235,0.3);text-decoration:none}
+.footer-links a:hover{color:var(--white)}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav>
+  <a href="index.html" class="nav-logo">Jaroslav Holy</a>
+  <div class="nav-center">
+    <a href="prace.html" class="active">Prace</a>
+    <a href="sluzby.html">Sluzby</a>
+    <a href="omne.html">O mne</a>
+  </div>
+  <div class="nav-right"><a href="kontakt.html" class="nav-cta">Poptat projekt</a></div>
+</nav>
+<div class="portfolio-header">
+  <div>
+    <div class="ph-eyebrow">Portfolio</div>
+    <h1 class="ph-title">Selected<br><em>work</em></h1>
+  </div>
+  <p class="ph-desc">Vizualni obsah ktery prodava. Fotografie a video pro znacky ktere chteji byt videt.</p>
+</div>
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">Vse</button>
+  <button class="filter-btn" data-filter="foto">Foto</button>
+  <button class="filter-btn" data-filter="video">Video</button>
+  <button class="filter-btn" data-filter="social">Socialni site</button>
+  <button class="filter-btn" data-filter="reality">Nemovitosti</button>
+</div>
+<div class="portfolio-grid" id="grid">
+  <div class="work-item" data-cat="foto"><img src="kolowrat-1.jpg" alt="Kolowratovy sady"><div class="work-overlay"><div class="wo-client">Kolowratovy sady</div><div class="wo-type">Produktova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="city-moto-1.jpg" alt="City Moto"><div class="work-overlay"><div class="wo-client">City Moto</div><div class="wo-type">Kampanova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="city-moto-2.jpg" alt="City Moto 2"><div class="work-overlay"><div class="wo-client">City Moto</div><div class="wo-type">Kampanova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="ibz-1.jpg" alt="IBZ"><div class="work-overlay"><div class="wo-client">IBZ</div><div class="wo-type">Produktova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="ibz-2.jpg" alt="IBZ 2"><div class="work-overlay"><div class="wo-client">IBZ</div><div class="wo-type">Produktova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="ibz-3.jpg" alt="IBZ 3"><div class="work-overlay"><div class="wo-client">IBZ</div><div class="wo-type">Produktova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="yournia-1.jpg" alt="Yournia"><div class="work-overlay"><div class="wo-client">Yournia</div><div class="wo-type">Sperky lifestyle</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="yournia-2.jpg" alt="Yournia 2"><div class="work-overlay"><div class="wo-client">Yournia</div><div class="wo-type">Sperky lifestyle</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="wtb-1.jpg" alt="WTB"><div class="work-overlay"><div class="wo-client">WTB</div><div class="wo-type">Produktova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="wtb-2.jpg" alt="WTB 2"><div class="work-overlay"><div class="wo-client">WTB</div><div class="wo-type">Produktova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="oasis-1.jpg" alt="Oasis"><div class="work-overlay"><div class="wo-client">Oasis</div><div class="wo-type">Produktova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="oasis-2.jpg" alt="Oasis 2"><div class="work-overlay"><div class="wo-client">Oasis</div><div class="wo-type">Produktova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="product-foto-1.jpg" alt="Produkt"><div class="work-overlay"><div class="wo-client">Produktova foto</div><div class="wo-type">Produktova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="product-foto-2.jpg" alt="Produkt 2"><div class="work-overlay"><div class="wo-client">Produktova foto</div><div class="wo-type">Produktova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="kolowrat-3.jpg" alt="Kolowrat 3"><div class="work-overlay"><div class="wo-client">Kolowratovy sady</div><div class="wo-type">Produktova fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-1.jpg" alt="Nemovitost 1"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiery</div></div><span class="wo-tag">Reality</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-2.jpg" alt="Nemovitost 2"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiery</div></div><span class="wo-tag">Reality</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-3.jpg" alt="Nemovitost 3"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiery</div></div><span class="wo-tag">Reality</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-4.jpg" alt="Nemovitost 4"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiery</div></div><span class="wo-tag">Reality</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-5.jpg" alt="Nemovitost 5"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiery</div></div><span class="wo-tag">Reality</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-6.jpg" alt="Nemovitost 6"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiery</div></div><span class="wo-tag">Reality</span></div>
+</div>
+<footer>
+  <span class="footer-copy">2025 Jaroslav Holy ICO 87574381 Plzen</span>
+  <div class="footer-links"><a href="https://instagram.com" target="_blank">Instagram</a><a href="https://linkedin.com" target="_blank">LinkedIn</a></div>
+</footer>
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
+animRing();
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    document.querySelectorAll('.work-item').forEach(item=>{
+      item.style.display=(f==='all'||item.dataset.cat===f)?'block':'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

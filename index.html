@@ -50,16 +50,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .ticker-item{font-family:var(--font-display);font-size:13px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,240,235,0.35);padding:0 48px;display:flex;align-items:center;gap:16px}
 .ticker-dot{width:4px;height:4px;border-radius:50%;background:rgba(242,240,235,0.2);flex-shrink:0}
-.work{display:grid;grid-template-columns:repeat(3,1fr);border-top:none}
-.work-cell{border-right:1px solid rgba(10,10,10,0.1);border-bottom:1px solid rgba(10,10,10,0.1);position:relative;overflow:hidden;aspect-ratio:1/1.1;background:#e0ddd6;cursor:none}
-.work-cell:nth-child(3n){border-right:none}
-.work-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
-.work-cell:hover img{transform:scale(1.04)}
-.work-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--light)}
-.work-overlay{position:absolute;inset:0;background:var(--black);opacity:0;transition:opacity .3s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
-.work-cell:hover .work-overlay{opacity:.88}
-.work-client{font-family:var(--font-display);font-size:28px;font-weight:700;text-transform:uppercase;color:var(--white);letter-spacing:.02em;line-height:1;margin-bottom:6px}
-.work-type{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,240,235,0.45)}
 .section-header{display:grid;grid-template-columns:1fr auto;align-items:end;padding:64px 40px 40px;border-bottom:1px solid rgba(10,10,10,0.12)}
 .section-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .section-eyebrow::before{content:'';width:16px;height:1px;background:currentColor;display:block}
@@ -117,9 +107,141 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
 .hero-title{animation:fadeUp .7s ease .15s both}
 .hero-meta{animation:fadeUp .7s ease .3s both}
 .hero-bottom{animation:fadeUp .7s ease .4s both}
+
+/* =============================================
+   SCROLL PROGRESS BAR
+   ============================================= */
+.scroll-progress{
+  position:fixed;bottom:0;left:0;height:2px;
+  background:var(--black);z-index:9999;width:0%;
+  transition:width 60ms linear;
+}
+
+/* =============================================
+   REVEAL ON SCROLL
+   ============================================= */
+.reveal{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity .85s cubic-bezier(.25,.46,.45,.94),transform .85s cubic-bezier(.25,.46,.45,.94);
+}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}
+.reveal-d4{transition-delay:.4s}
+
+/* =============================================
+   HORIZONTAL SCROLL GALLERY
+   ============================================= */
+.work-scroll-outer{
+  position:relative;
+  /* height set by JS */
+}
+.work-scroll-sticky{
+  position:sticky;
+  top:64px;
+  height:calc(100vh - 64px);
+  overflow:hidden;
+  border-top:1px solid rgba(10,10,10,0.1);
+}
+.work-track{
+  display:flex;
+  height:100%;
+  will-change:transform;
+}
+/* Intro panel */
+.work-intro{
+  flex:0 0 28vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:56px 48px;
+  background:var(--bg);
+  border-right:1px solid rgba(10,10,10,0.1);
+  position:relative;
+  z-index:1;
+}
+.work-intro-eyebrow{
+  font-size:10px;font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--mid);
+  display:flex;align-items:center;gap:10px;
+}
+.work-intro-eyebrow::before{content:'';width:16px;height:1px;background:currentColor;display:block}
+.work-intro-title{
+  font-family:var(--font-display);
+  font-size:clamp(48px,5vw,72px);
+  font-weight:700;text-transform:uppercase;
+  letter-spacing:-.01em;line-height:.95;
+}
+.work-intro-title em{font-weight:300;font-style:italic}
+.work-intro-link{
+  font-size:10px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--black);
+  text-decoration:none;border-bottom:1px solid var(--black);
+  padding-bottom:2px;display:inline-block;transition:opacity .2s;
+}
+.work-intro-link:hover{opacity:.5}
+/* Image slides */
+.work-slide{
+  flex:0 0 44vw;height:100%;
+  position:relative;overflow:hidden;
+  border-right:1px solid rgba(10,10,10,0.1);
+}
+.work-slide img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .65s cubic-bezier(.25,.46,.45,.94);
+}
+.work-slide:hover img{transform:scale(1.04)}
+.work-overlay{
+  position:absolute;inset:0;background:var(--black);
+  opacity:0;transition:opacity .35s;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:32px;
+}
+.work-slide:hover .work-overlay{opacity:.88}
+.work-client{
+  font-family:var(--font-display);font-size:30px;font-weight:700;
+  text-transform:uppercase;color:var(--white);
+  letter-spacing:.02em;line-height:1;margin-bottom:8px;
+}
+.work-type{
+  font-size:10px;font-weight:400;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(242,240,235,0.45);
+}
+/* Scroll hint */
+.work-scroll-hint{
+  position:absolute;bottom:28px;right:40px;
+  font-size:10px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mid);
+  display:flex;align-items:center;gap:10px;
+  z-index:5;transition:opacity .5s;pointer-events:none;
+}
+.work-scroll-hint.hidden{opacity:0}
+.hint-arrow{display:inline-block;animation:arrowPulse 1.4s ease-in-out infinite}
+@keyframes arrowPulse{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+
+/* Slide counter */
+.work-counter{
+  position:absolute;top:28px;right:40px;
+  font-size:10px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mid);
+  z-index:5;pointer-events:none;
+  transition:opacity .3s;
+}
+
+/* Mobile fallback */
+@media(max-width:768px){
+  .work-scroll-outer{height:auto !important}
+  .work-scroll-sticky{position:relative;top:0;height:auto;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .work-track{transform:none !important}
+  .work-intro{flex:0 0 80vw;min-height:60vw}
+  .work-slide{flex:0 0 85vw;height:60vw}
+  .work-scroll-hint,.work-counter{display:none}
+}
 </style>
 </head>
 <body>
+<div class="scroll-progress" id="scrollProgress"></div>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -206,86 +328,109 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   </div>
 </div>
 
-<div class="section-header">
-  <div>
-    <div class="section-eyebrow">Vybraná práce</div>
-    <h2 class="section-title">Selected<br><em>work</em></h2>
-  </div>
-  <a href="prace.html" class="section-link">Celé portfolio ↗</a>
-</div>
+<!-- HORIZONTAL SCROLL GALLERY — výška nastavena JS -->
+<div class="work-scroll-outer" id="workOuter">
+  <div class="work-scroll-sticky">
+    <div class="work-track" id="workTrack">
 
-<div class="work">
-  <div class="work-cell">
-    <img src="kolowrat-1.jpg" alt="Kolowratovy sady">
-    <div class="work-overlay">
-      <div class="work-client">Kolowratovy sady</div>
-      <div class="work-type">Produktová fotografie</div>
+      <!-- Intro panel -->
+      <div class="work-intro">
+        <span class="work-intro-eyebrow">Vybraná práce</span>
+        <h2 class="work-intro-title">Selected<br><em>work</em></h2>
+        <a href="prace.html" class="work-intro-link">Celé portfolio ↗</a>
+      </div>
+
+      <!-- Slide 1 -->
+      <div class="work-slide">
+        <img src="kolowrat-1.jpg" alt="Kolowratovy sady">
+        <div class="work-overlay">
+          <div class="work-client">Kolowratovy sady</div>
+          <div class="work-type">Produktová fotografie</div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="work-slide">
+        <img src="city-moto-1.jpg" alt="City Moto">
+        <div class="work-overlay">
+          <div class="work-client">City Moto</div>
+          <div class="work-type">Kampaňová fotografie</div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="work-slide">
+        <img src="product-foto-1.jpg" alt="Produktová fotografie">
+        <div class="work-overlay">
+          <div class="work-client">Produktová foto</div>
+          <div class="work-type">Produktová fotografie</div>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="work-slide">
+        <img src="ibz-1.jpg" alt="IBZ">
+        <div class="work-overlay">
+          <div class="work-client">IBZ</div>
+          <div class="work-type">Produktová fotografie</div>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="work-slide">
+        <img src="yournia-1.jpg" alt="Yournia">
+        <div class="work-overlay">
+          <div class="work-client">Yournia</div>
+          <div class="work-type">Šperky & lifestyle</div>
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="work-slide">
+        <img src="wtb-1.jpg" alt="WTB">
+        <div class="work-overlay">
+          <div class="work-client">WTB</div>
+          <div class="work-type">Produktová fotografie</div>
+        </div>
+      </div>
+
     </div>
-  </div>
-  <div class="work-cell">
-    <img src="city-moto-1.jpg" alt="City Moto">
-    <div class="work-overlay">
-      <div class="work-client">City Moto</div>
-      <div class="work-type">Kampaňová fotografie</div>
+    <!-- Scroll hint -->
+    <div class="work-scroll-hint" id="workHint">
+      Scroll <span class="hint-arrow">→</span>
     </div>
-  </div>
-  <div class="work-cell">
-    <img src="product-foto-1.jpg" alt="Produktová fotografie">
-    <div class="work-overlay">
-      <div class="work-client">Produktová foto</div>
-      <div class="work-type">Produktová fotografie</div>
-    </div>
-  </div>
-  <div class="work-cell">
-    <img src="ibz-1.jpg" alt="IBZ">
-    <div class="work-overlay">
-      <div class="work-client">IBZ</div>
-      <div class="work-type">Produktová fotografie</div>
-    </div>
-  </div>
-  <div class="work-cell">
-    <img src="yournia-1.jpg" alt="Yournia">
-    <div class="work-overlay">
-      <div class="work-client">Yournia</div>
-      <div class="work-type">Šperky & lifestyle</div>
-    </div>
-  </div>
-  <div class="work-cell">
-    <img src="wtb-1.jpg" alt="WTB">
-    <div class="work-overlay">
-      <div class="work-client">WTB</div>
-      <div class="work-type">Produktová fotografie</div>
-    </div>
+    <!-- Slide counter -->
+    <div class="work-counter" id="workCounter">01 / 06</div>
   </div>
 </div>
 
 <div class="section-header" id="sluzby">
-  <div>
+  <div class="reveal">
     <div class="section-eyebrow">Služby</div>
     <h2 class="section-title">What<br><em>I do</em></h2>
   </div>
 </div>
 
 <div class="services">
-  <a href="sluzby.html" class="service-item">
+  <a href="sluzby.html" class="service-item reveal reveal-d1">
     <div class="svc-num">01</div>
     <div class="svc-name">Produktová<br>fotografie</div>
     <div class="svc-desc">E-shop, kampaně,<br>detailní záběry</div>
     <span class="svc-arrow">↗</span>
   </a>
-  <a href="sluzby.html" class="service-item">
+  <a href="sluzby.html" class="service-item reveal reveal-d2">
     <div class="svc-num">02</div>
     <div class="svc-name">Promo &<br>Produkt video</div>
     <div class="svc-desc">Reklamní videa<br>pro online i TV</div>
     <span class="svc-arrow">↗</span>
   </a>
-  <a href="sluzby.html" class="service-item">
+  <a href="sluzby.html" class="service-item reveal reveal-d3">
     <div class="svc-num">03</div>
     <div class="svc-name">Sociální<br>sítě</div>
     <div class="svc-desc">Obsah pro Instagram,<br>Facebook, LinkedIn</div>
     <span class="svc-arrow">↗</span>
   </a>
-  <a href="sluzby.html" class="service-item">
+  <a href="sluzby.html" class="service-item reveal reveal-d4">
     <div class="svc-num">04</div>
     <div class="svc-name">Nemovitosti<br>& architektura</div>
     <div class="svc-desc">Interiéry, exteriéry,<br>360° prohlídky</div>
@@ -293,7 +438,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   </a>
 </div>
 
-<div class="clients-strip">
+<div class="clients-strip reveal">
   <span class="clients-label">Klienti</span>
   <div class="clients-list">
     <span class="client-tag">Sony DADC</span>
@@ -310,12 +455,12 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
 </div>
 
 <div class="testimonials">
-  <div class="testimonials-left">
+  <div class="testimonials-left reveal">
     <div class="testimonials-heading">Client<br><em>words</em></div>
     <span class="testimonials-count">03 reference</span>
   </div>
   <div class="testimonials-right">
-    <div class="testimonial-item">
+    <div class="testimonial-item reveal reveal-d1">
       <div>
         <p class="t-quote">"Spolupráce probíhala od začátku až do konce naprosto profesionálně. Pan Holý přesně vystihl podstatu našich služeb."</p>
         <div class="t-author">Lenka Adamová</div>
@@ -323,7 +468,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
       </div>
       <div class="t-company">Sony</div>
     </div>
-    <div class="testimonial-item">
+    <div class="testimonial-item reveal reveal-d2">
       <div>
         <p class="t-quote">"Opakovaně jsme využili jeho služeb. Dokonale zachytil naše požadavky a dokázal oslovit velké množství sledujících."</p>
         <div class="t-author">Petra Matušková</div>
@@ -331,7 +476,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
       </div>
       <div class="t-company">NTKD</div>
     </div>
-    <div class="testimonial-item">
+    <div class="testimonial-item reveal reveal-d3">
       <div>
         <p class="t-quote">"Do toho co dělá dává srdce. Pokud hledáte originalitu a obrovskou profesionalitu, Jára je jasná volba."</p>
         <div class="t-author">Lucie Ladmanová</div>
@@ -342,9 +487,9 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   </div>
 </div>
 
-<section class="cta">
+<section class="cta reveal">
   <h2 class="cta-title">Máte<br>projekt?<br><em>Pojďme<br>na to.</em></h2>
-  <div class="cta-right">
+  <div class="cta-right reveal reveal-d2">
     <p class="cta-desc">Napište mi nebo zavolejte. Ozvu se do 24 hodin a probereme jak vám mohu pomoct vytvořit obsah, který prodává.</p>
     <div class="cta-contacts">
       <a href="mailto:holy.jaroslav@gmail.com" class="cta-contact-link">holy.jaroslav@gmail.com<span>Email ↗</span></a>
@@ -364,15 +509,116 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
 </footer>
 
 <script>
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
-function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
-animRing();
-document.querySelectorAll('a,button,.work-cell,.service-item').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='56px';ring.style.height='56px';ring.style.opacity='.25'});
-  el.addEventListener('mouseleave',()=>{cursor.style.width='8px';cursor.style.height='8px';ring.style.width='36px';ring.style.height='36px';ring.style.opacity='.4'});
+/* =============================================
+   CURSOR
+   ============================================= */
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
 });
+function animRing() {
+  rx += (mx - rx) * .12;
+  ry += (my - ry) * .12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,.work-slide,.service-item').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '12px'; cursor.style.height = '12px';
+    ring.style.width = '56px'; ring.style.height = '56px'; ring.style.opacity = '.25';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '8px'; cursor.style.height = '8px';
+    ring.style.width = '36px'; ring.style.height = '36px'; ring.style.opacity = '.4';
+  });
+});
+
+/* =============================================
+   HORIZONTAL SCROLL
+   ============================================= */
+const workOuter  = document.getElementById('workOuter');
+const workTrack  = document.getElementById('workTrack');
+const workHint   = document.getElementById('workHint');
+const workCounter = document.getElementById('workCounter');
+const slideCount = workTrack ? workTrack.querySelectorAll('.work-slide').length : 0;
+
+function setOuterHeight() {
+  if (!workOuter || !workTrack) return;
+  const extra = workTrack.scrollWidth - window.innerWidth;
+  workOuter.style.height = (extra + window.innerHeight) + 'px';
+}
+
+/* =============================================
+   SCROLL HANDLER (progress + horizontal + reveals)
+   ============================================= */
+const progressBar = document.getElementById('scrollProgress');
+let rafPending = false;
+
+function onScroll() {
+  if (!rafPending) {
+    rafPending = true;
+    requestAnimationFrame(updateAll);
+  }
+}
+
+function updateAll() {
+  rafPending = false;
+
+  /* -- Progress bar -- */
+  if (progressBar) {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (window.scrollY / total * 100) + '%';
+  }
+
+  /* -- Horizontal gallery -- */
+  if (workOuter && workTrack) {
+    const rect     = workOuter.getBoundingClientRect();
+    const scrolled = -rect.top;
+    const maxScroll = workOuter.offsetHeight - window.innerHeight;
+    const fraction  = Math.max(0, Math.min(1, scrolled / maxScroll));
+    const maxTX     = workTrack.scrollWidth - window.innerWidth;
+    workTrack.style.transform = `translateX(${-fraction * maxTX}px)`;
+
+    /* Hide hint once user starts scrolling the section */
+    if (workHint) workHint.classList.toggle('hidden', scrolled > 60);
+
+    /* Update slide counter */
+    if (workCounter && slideCount > 0) {
+      const slideIdx = Math.min(
+        slideCount,
+        Math.ceil(fraction * slideCount)
+      );
+      const cur = slideIdx === 0 ? 1 : slideIdx;
+      workCounter.textContent = String(cur).padStart(2,'0') + ' / ' + String(slideCount).padStart(2,'0');
+    }
+  }
+}
+
+setOuterHeight();
+window.addEventListener('resize', () => { setOuterHeight(); updateAll(); }, { passive: true });
+window.addEventListener('scroll', onScroll, { passive: true });
+updateAll();
+
+/* =============================================
+   SCROLL REVEAL (IntersectionObserver)
+   ============================================= */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObs.observe(el));
 </script>
 </body>
 </html>

@@ -75,6 +75,9 @@ footer{background:var(--black);padding:28px 40px;display:flex;align-items:center
   .portfolio-grid{grid-template-columns:repeat(2,1fr)}
   .work-item:nth-child(3n){border-right:1px solid rgba(10,10,10,0.1)}
   .work-item:nth-child(2n){border-right:none}
+  /* Popisky klientů vždy viditelné na mobilu */
+  .work-overlay{opacity:.78}
+  .work-item:hover .work-overlay{opacity:.78}
   footer{flex-direction:column;gap:16px;align-items:flex-start;padding:24px 20px}
 }
 @media(max-width:480px){
@@ -144,7 +147,7 @@ footer{background:var(--black);padding:28px 40px;display:flex;align-items:center
 </div>
 <footer>
   <span class="footer-copy">2025 Jaroslav Holý IČO 87574381 Plzeň</span>
-  <div class="footer-links"><a href="https://instagram.com" target="_blank">Instagram</a><a href="https://linkedin.com" target="_blank">LinkedIn</a></div>
+  <div class="footer-links"><a href="https://www.instagram.com/jaroslavholy.cz/" target="_blank">Instagram</a><a href="https://www.facebook.com/jaroslavholy.cz/" target="_blank">Facebook</a></div>
 </footer>
 <script>
 const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>O mně — Jaroslav Holý</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,700&display=swap" rel="stylesheet">
 <style>
@@ -13,88 +14,139 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--black);font-family:var(--font-body);font-weight:300;overflow-x:hidden;cursor:none}
 .cursor{position:fixed;width:8px;height:8px;background:var(--black);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
 .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--black);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4}
+
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 40px;height:64px;border-bottom:1px solid var(--border);background:rgba(242,240,235,0.92);backdrop-filter:blur(12px)}
 .nav-logo{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--black);text-decoration:none}
 .nav-center{display:flex;gap:40px}
 .nav-center a{font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .2s}
 .nav-center a:hover,.nav-center a.active{color:var(--black)}
-.nav-right{display:flex;justify-content:flex-end}
+.nav-right{display:flex;justify-content:flex-end;align-items:center}
 .nav-cta{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:var(--black);padding:9px 22px;text-decoration:none;transition:opacity .2s}
 .nav-cta:hover{opacity:.75}
+.nav-burger{display:none;flex-direction:column;justify-content:space-between;width:24px;height:16px;background:none;border:none;cursor:pointer;padding:0;margin-left:16px}
+.nav-burger span{display:block;width:100%;height:1.5px;background:var(--black);transition:all .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(242,240,235,0.98);backdrop-filter:blur(16px);z-index:99;flex-direction:column;border-bottom:1px solid rgba(10,10,10,0.12);padding:8px 0}
+.nav-mobile.open{display:flex}
+.nav-mobile a{padding:18px 24px;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);text-decoration:none;border-bottom:1px solid rgba(10,10,10,0.06);transition:color .2s}
+.nav-mobile a:hover{color:var(--black)}
+.nav-mobile .nav-mobile-cta{color:var(--black);font-weight:600;border-bottom:none}
 
 /* HERO */
-.about-hero{padding-top:64px;display:grid;grid-template-columns:1fr 1fr;min-height:80vh;border-bottom:1px solid var(--border)}
-.ah-left{padding:72px 40px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--border)}
-.ah-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;margin-bottom:40px}
-.ah-eyebrow::before{content:'';width:16px;height:1px;background:currentColor;display:block}
-.ah-title{font-family:var(--font-display);font-size:clamp(56px,7vw,96px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.92;color:var(--black)}
-.ah-title em{font-weight:300;font-style:italic;display:block}
-.ah-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:56px}
-.ah-stat{background:var(--bg);padding:24px 20px}
-.ah-stat-num{font-family:var(--font-display);font-size:40px;font-weight:700;color:var(--black);line-height:1;letter-spacing:-.02em}
-.ah-stat-lbl{font-size:10px;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);margin-top:4px}
-.ah-right{background:var(--black);position:relative;display:flex;align-items:center;justify-content:center}
-.ah-photo-ph{display:flex;flex-direction:column;align-items:center;gap:12px;opacity:.15}
-.ah-photo-ph span{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--white)}
-.ah-right-label{position:absolute;bottom:40px;right:32px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,240,235,.25);writing-mode:vertical-rl}
+.hero{padding-top:64px;border-bottom:1px solid var(--border)}
+.hero-inner{padding:72px 40px 64px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;border-bottom:1px solid var(--border)}
+.hero-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.hero-eyebrow::before{content:'';width:16px;height:1px;background:currentColor;display:block}
+.hero-name{font-family:var(--font-display);font-size:clamp(64px,8vw,120px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.9;color:var(--black)}
+.hero-name em{font-weight:300;font-style:italic;display:block;color:var(--mid)}
+.hero-right{display:flex;flex-direction:column;justify-content:flex-end;gap:24px;padding-bottom:8px}
+.hero-role{font-size:14px;font-weight:400;color:var(--mid);line-height:1.6;max-width:360px}
+.hero-link{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--black);text-decoration:none;border-bottom:1px solid var(--black);padding-bottom:2px;display:inline-block;transition:opacity .2s}
+.hero-link:hover{opacity:.5}
 
-/* BIO */
-.bio{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
-.bio-left{padding:72px 40px;border-right:1px solid var(--border)}
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border)}
+.stat-item{padding:32px 40px;border-right:1px solid var(--border)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:var(--font-display);font-size:56px;font-weight:700;letter-spacing:-.02em;color:var(--black);line-height:1;margin-bottom:6px}
+.stat-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--mid)}
+
+/* BIO + VALUES — 2 sloupce */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.about-bio{padding:64px 40px;border-right:1px solid var(--border)}
 .bio-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;margin-bottom:32px}
 .bio-eyebrow::before{content:'';width:16px;height:1px;background:currentColor;display:block}
-.bio-text{font-size:16px;font-weight:300;color:var(--black);line-height:1.85;margin-bottom:24px}
+.bio-text{font-size:15px;font-weight:300;color:var(--black);line-height:1.85;max-width:480px}
 .bio-text strong{font-weight:500}
-.bio-right{padding:72px 40px;display:flex;flex-direction:column;gap:40px}
-.bio-value{padding-bottom:40px;border-bottom:1px solid var(--border)}
-.bio-value:last-child{border-bottom:none;padding-bottom:0}
-.bv-num{font-family:var(--font-display);font-size:10px;color:var(--light);letter-spacing:.15em;margin-bottom:12px}
-.bv-title{font-family:var(--font-display);font-size:24px;font-weight:700;text-transform:uppercase;color:var(--black);margin-bottom:8px;letter-spacing:.02em}
-.bv-desc{font-size:13px;font-weight:300;color:var(--mid);line-height:1.7;letter-spacing:.02em}
 
-/* CLIENTS */
-.clients-section{padding:72px 40px;border-bottom:1px solid var(--border)}
-.cl-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:48px}
-.cl-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px}
-.cl-eyebrow::before{content:'';width:16px;height:1px;background:currentColor;display:block}
-.cl-title{font-family:var(--font-display);font-size:clamp(32px,4vw,52px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;color:var(--black)}
-.cl-title em{font-weight:300;font-style:italic}
-.clients-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-.client-cell{background:var(--bg);padding:28px 24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);transition:background .2s,color .2s}
-.client-cell:hover{background:var(--black);color:var(--white)}
+.about-values{padding:64px 40px;display:flex;flex-direction:column;gap:0}
+.value-item{padding:32px 0;border-bottom:1px solid var(--border)}
+.value-item:first-child{padding-top:0}
+.value-item:last-child{border-bottom:none;padding-bottom:0}
+.value-num{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--light);margin-bottom:12px}
+.value-title{font-family:var(--font-display);font-size:28px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;color:var(--black);margin-bottom:10px;line-height:1}
+.value-desc{font-size:13px;font-weight:300;color:var(--mid);line-height:1.7;letter-spacing:.01em}
 
-/* TESTIMONIALS */
-.testimonials{border-bottom:1px solid var(--border)}
-.t-header{padding:72px 40px 48px;border-bottom:1px solid var(--border)}
-.t-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;margin-bottom:20px}
-.t-eyebrow::before{content:'';width:16px;height:1px;background:currentColor;display:block}
-.t-title{font-family:var(--font-display);font-size:clamp(36px,4vw,60px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;color:var(--black)}
-.t-title em{font-weight:300;font-style:italic}
-.t-list{display:flex;flex-direction:column}
-.t-item{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start;padding:48px 40px;border-bottom:1px solid var(--border)}
-.t-item:last-child{border-bottom:none}
-.t-quote{font-family:var(--font-display);font-size:22px;font-weight:300;font-style:italic;line-height:1.5;color:var(--black);margin-bottom:20px}
-.t-author{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--black)}
-.t-role{font-size:10px;color:var(--mid);margin-top:3px;letter-spacing:.08em}
-.t-company{font-family:var(--font-display);font-size:44px;font-weight:700;text-transform:uppercase;color:var(--light);line-height:1;white-space:nowrap}
+/* FOTO GALERIE */
+.photo-strip{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border)}
+.photo-item{aspect-ratio:3/4;overflow:hidden;border-right:1px solid var(--border)}
+.photo-item:last-child{border-right:none}
+.photo-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.photo-item:hover img{transform:scale(1.04)}
 
 /* CTA */
-.cta-strip{background:var(--black);padding:80px 40px;display:flex;align-items:center;justify-content:space-between;gap:40px}
-.cs-title{font-family:var(--font-display);font-size:clamp(36px,5vw,64px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;color:var(--white)}
-.cs-title em{font-weight:300;font-style:italic;color:rgba(242,240,235,.35)}
-.cs-btn{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--black);background:var(--white);padding:16px 36px;text-decoration:none;white-space:nowrap;transition:opacity .2s;flex-shrink:0}
-.cs-btn:hover{opacity:.8}
+.cta{background:var(--black);padding:80px 40px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.cta-title{font-family:var(--font-display);font-size:clamp(48px,6vw,88px);font-weight:700;text-transform:uppercase;letter-spacing:-.02em;line-height:.92;color:var(--white)}
+.cta-title em{font-weight:300;font-style:italic;color:rgba(242,240,235,0.3);display:block}
+.cta-right{display:flex;flex-direction:column;gap:28px}
+.cta-desc{font-size:14px;font-weight:300;color:rgba(242,240,235,0.45);line-height:1.8}
+.cta-btn{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--black);background:var(--white);padding:16px 32px;text-decoration:none;display:inline-block;transition:opacity .2s}
+.cta-btn:hover{opacity:.75}
 
+/* FOOTER */
 footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);padding:28px 40px;display:flex;align-items:center;justify-content:space-between}
 .footer-copy{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,240,235,.2)}
 .footer-links{display:flex;gap:32px}
 .footer-links a{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,240,235,.3);text-decoration:none;transition:color .2s}
 .footer-links a:hover{color:var(--white)}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.ah-eyebrow{animation:fadeUp .6s ease .05s both}
-.ah-title{animation:fadeUp .6s ease .15s both}
-.ah-stats{animation:fadeUp .6s ease .3s both}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+
+/* ===== HAMBURGER ===== */
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .cursor,.cursor-ring{display:none}
+  body{cursor:auto}
+  nav{padding:0 20px;grid-template-columns:1fr auto}
+  .nav-center{display:none}
+  .nav-cta{display:none}
+  .nav-burger{display:flex}
+
+  /* Hero */
+  .hero-inner{grid-template-columns:1fr;gap:32px;padding:80px 20px 40px}
+  .hero-name{font-size:clamp(56px,14vw,96px)}
+  .hero-right{padding-bottom:0}
+  .hero-role{max-width:100%;font-size:13px}
+
+  /* Stats */
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .stat-item{padding:24px 16px;border-right:1px solid var(--border)}
+  .stat-num{font-size:36px}
+  .stat-label{font-size:8px;letter-spacing:.12em}
+
+  /* Bio + Values — STACKED na mobilu */
+  .about-grid{grid-template-columns:1fr}
+  .about-bio{padding:48px 20px;border-right:none;border-bottom:1px solid var(--border)}
+  .bio-text{font-size:14px;max-width:100%}
+  .about-values{padding:40px 20px}
+  .value-title{font-size:24px}
+
+  /* Foto galerie */
+  .photo-strip{grid-template-columns:1fr}
+  .photo-item{aspect-ratio:4/3;border-right:none;border-bottom:1px solid var(--border)}
+  .photo-item:last-child{border-bottom:none}
+
+  /* CTA */
+  .cta{grid-template-columns:1fr;gap:36px;padding:56px 20px}
+  .cta-title{font-size:clamp(40px,11vw,64px)}
+  .cta-btn{width:100%;text-align:center;padding:18px 24px}
+
+  /* Footer */
+  footer{flex-direction:column;gap:16px;align-items:flex-start;padding:24px 20px}
+}
+
+@media(max-width:480px){
+  .stats{grid-template-columns:1fr}
+  .stat-item{border-right:none;border-bottom:1px solid var(--border);padding:20px 20px}
+  .stat-item:last-child{border-bottom:none}
+  .stat-num{font-size:44px}
+}
 </style>
 </head>
 <body>
@@ -108,131 +160,105 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
     <a href="sluzby.html">Služby</a>
     <a href="omne.html" class="active">O mně</a>
   </div>
-  <div class="nav-right"><a href="kontakt.html" class="nav-cta">Poptat projekt</a></div>
+  <div class="nav-right">
+    <a href="kontakt.html" class="nav-cta">Poptat projekt</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="prace.html">Práce</a>
+  <a href="sluzby.html">Služby</a>
+  <a href="omne.html" class="active">O mně</a>
+  <a href="kontakt.html" class="nav-mobile-cta">Poptat projekt</a>
+</div>
 
-<div class="about-hero">
-  <div class="ah-left">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
     <div>
-      <div class="ah-eyebrow">O mně</div>
-      <h1 class="ah-title">Jaroslav<br><em>Holý</em></h1>
+      <div class="hero-eyebrow">O mně</div>
+      <h1 class="hero-name">Jaroslav<br><em>Holý</em></h1>
     </div>
-    <div class="ah-stats">
-      <div class="ah-stat"><div class="ah-stat-num">20+</div><div class="ah-stat-lbl">let praxe</div></div>
-      <div class="ah-stat"><div class="ah-stat-num">150+</div><div class="ah-stat-lbl">klientů</div></div>
-      <div class="ah-stat"><div class="ah-stat-num">4</div><div class="ah-stat-lbl">specializace</div></div>
+    <div class="hero-right">
+      <p class="hero-role">Fotograf a videograf s více než 20 lety zkušeností. Specializuji se na produktovou fotografii, promo videa a obsah pro sociální sítě — s důrazem na výsledky, které prodávají.</p>
+      <a href="kontakt.html" class="hero-link">Poptat projekt &#x2197;&#xFE0E;</a>
     </div>
   </div>
-  <div class="ah-right">
-    <img src="image-portret.jpg" alt="Jaroslav Holý" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
-    <span class="ah-right-label">Fotograf · Videograf · Plzeň</span>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item reveal">
+    <div class="stat-num">20+</div>
+    <div class="stat-label">let praxe</div>
+  </div>
+  <div class="stat-item reveal reveal-d1">
+    <div class="stat-num">150+</div>
+    <div class="stat-label">klientů</div>
+  </div>
+  <div class="stat-item reveal reveal-d2">
+    <div class="stat-num">4</div>
+    <div class="stat-label">specializace</div>
   </div>
 </div>
 
-<!-- BIO -->
-<div class="bio">
-  <div class="bio-left">
+<!-- BIO + VALUES -->
+<div class="about-grid">
+  <div class="about-bio reveal">
     <div class="bio-eyebrow">Příběh</div>
-    <p class="bio-text">Jmenuji se <strong>Jaroslav Holý</strong> a vizuální tvorba je mou vášní již přes 20 let. Začínal jsem jako samostatný fotograf, ale postupem času se z mé práce vyvinula malá agentura nabízející komplexní vizuální služby.</p>
-    <p class="bio-text">Specializuji se na <strong>produktovou fotografii, promo videa, obsah pro sociální sítě a fotografii nemovitostí</strong>. Pracoval jsem s malými podnikateli i velkými korporacemi — ke každému projektu přistupuji individuálně.</p>
-    <p class="bio-text">Sídlím v <strong>Plzni</strong>, ale cestuji za projekty po celé České republice. Mým cílem je vždy vytvořit obsah, který nejen vypadá skvěle, ale také přináší výsledky.</p>
+    <p class="bio-text">
+      Jmenuji se <strong>Jaroslav Holý</strong> a vizuální tvorba je mou vášní již přes 20 let. Začínal jsem jako samostatný fotograf, ale postupem času se z mé práce vyvinula malá agentura nabízející komplexní vizuální služby.<br><br>
+      Specializuji se na produktovou fotografii, promo videa a obsah pro sociální sítě. Spolupracuji se značkami různých velikostí — od malých podnikatelů po velké korporace jako Sony DADC, Metrostav nebo Pilsen Steel.<br><br>
+      Každý projekt beru jako příležitost vytvořit něco, co přesáhne očekávání klienta — vizuál, který nejen vypadá dobře, ale skutečně funguje.
+    </p>
   </div>
-  <div class="bio-right">
-    <div class="bio-value">
-      <div class="bv-num">01</div>
-      <div class="bv-title">Preciznost</div>
-      <div class="bv-desc">Každý záběr je promyšlený. Věnuji pozornost kompozici, světlu a detailům, které ostatní přehlédnou.</div>
+  <div class="about-values">
+    <div class="value-item reveal">
+      <div class="value-num">01</div>
+      <div class="value-title">Preciznost</div>
+      <p class="value-desc">Každý záběr je promyšlený. Věnuji pozornost kompozici, světlu a detailům, které ostatní přehlédnou.</p>
     </div>
-    <div class="bio-value">
-      <div class="bv-num">02</div>
-      <div class="bv-title">Individualita</div>
-      <div class="bv-desc">Žádné šablony. Každý klient dostane přístup šitý na míru jeho značce a cílům.</div>
+    <div class="value-item reveal reveal-d1">
+      <div class="value-num">02</div>
+      <div class="value-title">Individualita</div>
+      <p class="value-desc">Žádné šablony. Každý klient dostane přístup šitý na míru jeho značce a cílům.</p>
     </div>
-    <div class="bio-value">
-      <div class="bv-num">03</div>
-      <div class="bv-title">Výsledky</div>
-      <div class="bv-desc">Fotografie a videa vytvářím s jasným cílem — aby fungovaly. Aby prodávaly, zaujaly a budovaly značku.</div>
-    </div>
-    <div class="bio-value">
-      <div class="bv-num">04</div>
-      <div class="bv-title">Komunikace</div>
-      <div class="bv-desc">Ozývám se rychle, dodávám včas. Spolupráce se mnou je jednoduchá a příjemná.</div>
+    <div class="value-item reveal reveal-d2">
+      <div class="value-num">03</div>
+      <div class="value-title">Výsledky</div>
+      <p class="value-desc">Fotografie a videa vytvářím s jasným cílem — aby fungovaly. Aby prodávaly, zaujaly a budovaly značku.</p>
     </div>
   </div>
 </div>
 
-<!-- CLIENTS -->
-<div class="clients-section">
-  <div class="cl-header">
-    <div>
-      <div class="cl-eyebrow">Klienti</div>
-      <div class="cl-title">Komu jsem<br><em>pomohl</em></div>
-    </div>
+<!-- FOTO GALERIE -->
+<div class="photo-strip">
+  <div class="photo-item">
+    <img src="nemovitost-1.jpg" alt="Interiér">
   </div>
-  <div class="clients-grid">
-    <div class="client-cell">Sony DADC</div>
-    <div class="client-cell">Metrostav</div>
-    <div class="client-cell">Billa</div>
-    <div class="client-cell">GXO</div>
-    <div class="client-cell">RE/MAX</div>
-    <div class="client-cell">Pilsen Steel</div>
-    <div class="client-cell">WTB</div>
-    <div class="client-cell">Greensgate</div>
-    <div class="client-cell">Kolowratovy sady</div>
-    <div class="client-cell">IBZ</div>
+  <div class="photo-item">
+    <img src="kolowrat-1.jpg" alt="Produktová fotografie">
+  </div>
+  <div class="photo-item">
+    <img src="city-moto-1.jpg" alt="Kampaňová fotografie">
   </div>
 </div>
 
-<!-- TESTIMONIALS -->
-<div class="testimonials">
-  <div class="t-header">
-    <div class="t-eyebrow">Reference</div>
-    <div class="t-title">Co říkají<br><em>klienti</em></div>
+<!-- CTA -->
+<section class="cta reveal">
+  <h2 class="cta-title">Máte<br>projekt?<br><em>Pojďme<br>na to.</em></h2>
+  <div class="cta-right reveal reveal-d2">
+    <p class="cta-desc">Napište mi nebo zavolejte. Ozvu se do 24 hodin a probereme, jak vám mohu pomoct vytvořit obsah, který prodává.</p>
+    <a href="kontakt.html" class="cta-btn">Nezávazně poptat &#x2197;&#xFE0E;</a>
   </div>
-  <div class="t-list">
-    <div class="t-item">
-      <div>
-        <p class="t-quote">"Spolupráce probíhala od začátku až do konce naprosto profesionálně. Pan Holý přesně vystihl podstatu našich služeb."</p>
-        <div class="t-author">Lenka Adamová</div>
-        <div class="t-role">Retail Operations Manager · Sony DADC Czech Republic</div>
-      </div>
-      <div class="t-company">Sony</div>
-    </div>
-    <div class="t-item">
-      <div>
-        <p class="t-quote">"Opakovaně jsme využili jeho služeb. Dokonale zachytil naše požadavky a dokázal oslovit velké množství sledujících."</p>
-        <div class="t-author">Petra Matušková</div>
-        <div class="t-role">Projektový manažer · NTKD</div>
-      </div>
-      <div class="t-company">NTKD</div>
-    </div>
-    <div class="t-item">
-      <div>
-        <p class="t-quote">"Do toho co dělá dává srdce. Pokud hledáte originalitu a obrovskou profesionalitu, Jára je jasná volba."</p>
-        <div class="t-author">Lucie Ladmanová</div>
-        <div class="t-role">Kouč osobního rozvoje</div>
-      </div>
-      <div class="t-company">LL</div>
-    </div>
-    <div class="t-item">
-      <div>
-        <p class="t-quote">"Děkuji panu Holému za profesionálně odvedené služby — jak foto, tak video. Skvělá komunikace. Vřele doporučuji."</p>
-        <div class="t-author">Metrostav a.s.</div>
-        <div class="t-role">Stavební společnost</div>
-      </div>
-      <div class="t-company">MS</div>
-    </div>
-  </div>
-</div>
-
-<div class="cta-strip">
-  <div class="cs-title">Spolupracujme<br><em>společně.</em></div>
-  <a href="kontakt.html" class="cs-btn">Napište mi ↗</a>
-</div>
+</section>
 
 <footer>
-  <span class="footer-copy">© 2025 Jaroslav Holý · Plzeň</span>
-  <div class="footer-links"><a href="#">Instagram</a><a href="#">LinkedIn</a></div>
+  <span class="footer-copy">© 2025 Jaroslav Holý · IČO 87574381 · Plzeň</span>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/jaroslavholy.cz/" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com/jaroslavholy.cz/" target="_blank">Facebook</a>
+  </div>
 </footer>
 
 <script>
@@ -241,10 +267,20 @@ let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
 function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
 animRing();
-document.querySelectorAll('a,button,.client-cell').forEach(el=>{
+document.querySelectorAll('a,button').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='52px';ring.style.height='52px'});
   el.addEventListener('mouseleave',()=>{cursor.style.width='8px';cursor.style.height='8px';ring.style.width='36px';ring.style.height='36px'});
 });
+const burger=document.getElementById('navBurger'),mobileNav=document.getElementById('navMobile');
+if(burger&&mobileNav){
+  burger.addEventListener('click',()=>{burger.classList.toggle('open');mobileNav.classList.toggle('open')});
+  mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mobileNav.classList.remove('open')}));
+}
+const revealEls=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+},{threshold:.12});
+revealEls.forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>

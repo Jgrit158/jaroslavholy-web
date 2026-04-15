@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kontakt — Jaroslav Holý</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,700&display=swap" rel="stylesheet">
 <style>
@@ -13,77 +14,152 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--black);font-family:var(--font-body);font-weight:300;overflow-x:hidden;cursor:none}
 .cursor{position:fixed;width:8px;height:8px;background:var(--black);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
 .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--black);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4}
+
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 40px;height:64px;border-bottom:1px solid var(--border);background:rgba(242,240,235,0.92);backdrop-filter:blur(12px)}
 .nav-logo{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--black);text-decoration:none}
 .nav-center{display:flex;gap:40px}
 .nav-center a{font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .2s}
-.nav-center a:hover,.nav-center a.active{color:var(--black)}
-.nav-right{display:flex;justify-content:flex-end}
+.nav-center a:hover{color:var(--black)}
+.nav-right{display:flex;justify-content:flex-end;align-items:center}
 .nav-cta{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:var(--black);padding:9px 22px;text-decoration:none;transition:opacity .2s}
 .nav-cta:hover{opacity:.75}
+.nav-burger{display:none;flex-direction:column;justify-content:space-between;width:24px;height:16px;background:none;border:none;cursor:pointer;padding:0;margin-left:16px}
+.nav-burger span{display:block;width:100%;height:1.5px;background:var(--black);transition:all .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(242,240,235,0.98);backdrop-filter:blur(16px);z-index:99;flex-direction:column;border-bottom:1px solid rgba(10,10,10,0.12);padding:8px 0}
+.nav-mobile.open{display:flex}
+.nav-mobile a{padding:18px 24px;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);text-decoration:none;border-bottom:1px solid rgba(10,10,10,0.06);transition:color .2s}
+.nav-mobile a:hover{color:var(--black)}
+.nav-mobile .nav-mobile-cta{color:var(--black);font-weight:600;border-bottom:none}
 
-/* MAIN LAYOUT */
-.contact-wrap{padding-top:64px;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 64px)}
+/* CONTACT LAYOUT — 2 sloupce na desktopu */
+.contact-wrap{
+  padding-top:64px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:100vh;
+}
 
-/* LEFT — INFO */
-.contact-left{background:var(--black);padding:72px 40px;display:flex;flex-direction:column;justify-content:space-between}
-.cl-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,240,235,.35);display:flex;align-items:center;gap:10px;margin-bottom:40px}
+/* LEVÝ PANEL — tmavý, kontaktní info */
+.contact-left{
+  background:var(--black);
+  padding:72px 48px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:sticky;
+  top:64px;
+  height:calc(100vh - 64px);
+}
+.cl-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,240,235,0.35);display:flex;align-items:center;gap:10px;margin-bottom:48px}
 .cl-eyebrow::before{content:'';width:16px;height:1px;background:currentColor;display:block}
-.cl-title{font-family:var(--font-display);font-size:clamp(52px,6vw,88px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.92;color:var(--white);margin-bottom:48px}
-.cl-title em{font-weight:300;font-style:italic;color:rgba(242,240,235,.35);display:block}
-.cl-desc{font-size:15px;font-weight:300;color:rgba(242,240,235,.5);line-height:1.8;max-width:380px;margin-bottom:64px}
-.cl-contacts{display:flex;flex-direction:column;gap:0}
-.cl-contact-item{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-top:1px solid rgba(242,240,235,.08);text-decoration:none;transition:opacity .2s}
-.cl-contact-item:last-child{border-bottom:1px solid rgba(242,240,235,.08)}
-.cl-contact-item:hover{opacity:.6}
-.cci-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,240,235,.3)}
-.cci-value{font-family:var(--font-display);font-size:20px;font-weight:400;color:var(--white);letter-spacing:.02em}
-.cl-bottom{margin-top:auto;padding-top:48px}
-.cl-address{font-size:12px;font-weight:300;color:rgba(242,240,235,.25);line-height:1.8;letter-spacing:.05em}
-.cl-ico{font-size:10px;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,240,235,.2);margin-top:12px}
-.cl-socials{display:flex;gap:24px;margin-top:24px}
-.cl-social{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,240,235,.35);text-decoration:none;transition:color .2s}
-.cl-social:hover{color:var(--white)}
+.cl-title{font-family:var(--font-display);font-size:clamp(44px,4.5vw,68px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.92;color:var(--white);margin-bottom:28px}
+.cl-title em{font-weight:300;font-style:italic;color:rgba(242,240,235,0.35);display:block}
+.cl-desc{font-size:14px;font-weight:300;color:rgba(242,240,235,0.45);line-height:1.8;margin-bottom:48px;max-width:380px}
+.cl-contacts{display:flex;flex-direction:column}
+.cl-contact{padding:20px 0;border-top:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:6px}
+.cl-contact:last-child{border-bottom:1px solid rgba(255,255,255,0.08)}
+.cl-contact-label{font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,240,235,0.3)}
+.cl-contact-value{font-family:var(--font-display);font-size:24px;font-weight:400;color:var(--white);text-decoration:none;letter-spacing:.01em;transition:opacity .2s}
+.cl-contact-value:hover{opacity:.6}
+.cl-location{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,240,235,0.2);margin-top:auto;padding-top:32px}
 
-/* RIGHT — FORM */
-.contact-right{padding:72px 40px;border-left:1px solid var(--border)}
-.cf-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;margin-bottom:40px}
-.cf-eyebrow::before{content:'';width:16px;height:1px;background:currentColor;display:block}
-.cf-title{font-family:var(--font-display);font-size:clamp(36px,4vw,56px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;color:var(--black);margin-bottom:48px}
-.cf-title em{font-weight:300;font-style:italic}
+/* PRAVÝ PANEL — formulář */
+.contact-right{
+  padding:72px 48px 80px;
+  overflow-y:auto;
+  border-left:1px solid var(--border);
+}
+.form-eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.form-eyebrow::before{content:'';width:16px;height:1px;background:currentColor;display:block}
+.form-title{font-family:var(--font-display);font-size:clamp(44px,4.5vw,68px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.92;color:var(--black);margin-bottom:48px}
+.form-title em{font-weight:300;font-style:italic;display:block}
 
-.form-group{margin-bottom:28px}
-.form-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:10px}
-.form-input,.form-select,.form-textarea{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(10,10,10,.2);padding:12px 0;font-family:var(--font-body);font-size:15px;font-weight:300;color:var(--black);outline:none;transition:border-color .2s;-webkit-appearance:none;border-radius:0}
-.form-input:focus,.form-select:focus,.form-textarea:focus{border-bottom-color:var(--black)}
-.form-input::placeholder,.form-textarea::placeholder{color:var(--light)}
-.form-select{cursor:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;padding-right:24px}
-.form-select option{background:var(--bg);color:var(--black)}
-.form-textarea{resize:none;height:120px;padding-top:12px}
+/* FORMULÁŘ */
+form{display:flex;flex-direction:column;gap:28px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.form-submit{width:100%;background:var(--black);color:var(--white);border:none;padding:18px 32px;font-family:var(--font-body);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;cursor:none;transition:opacity .2s;margin-top:8px}
+.form-field{display:flex;flex-direction:column;gap:8px}
+.form-field.full{grid-column:1/-1}
+.field-label{font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--mid)}
+.field-label .req{color:var(--black)}
+.field-input{
+  font-family:var(--font-body);font-size:15px;font-weight:300;
+  color:var(--black);background:transparent;border:none;
+  border-bottom:1px solid rgba(10,10,10,0.2);
+  padding:12px 0;outline:none;width:100%;
+  transition:border-color .2s;-webkit-appearance:none;border-radius:0;
+}
+.field-input:focus{border-color:var(--black)}
+.field-input::placeholder{color:rgba(10,10,10,0.25);font-weight:300}
+select.field-input{
+  cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 0 center;padding-right:20px;
+}
+textarea.field-input{resize:vertical;min-height:120px;line-height:1.7}
+.form-submit{
+  font-family:var(--font-body);font-size:10px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--white);background:var(--black);
+  padding:18px 36px;border:none;cursor:pointer;
+  width:100%;transition:opacity .2s;margin-top:4px;
+}
 .form-submit:hover{opacity:.75}
-.form-note{font-size:11px;color:var(--mid);margin-top:16px;line-height:1.6;letter-spacing:.03em}
+.form-note{font-size:11px;color:var(--mid);line-height:1.6;margin-top:-12px}
 
-/* SUCCESS STATE */
-.form-success{display:none;padding:48px 0;text-align:center}
-.form-success.visible{display:block}
-.fs-icon{font-family:var(--font-display);font-size:64px;font-weight:700;color:var(--light);line-height:1;margin-bottom:16px}
-.fs-title{font-family:var(--font-display);font-size:32px;font-weight:700;text-transform:uppercase;color:var(--black);margin-bottom:8px}
-.fs-desc{font-size:14px;color:var(--mid);line-height:1.7}
-
+/* FOOTER */
 footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);padding:28px 40px;display:flex;align-items:center;justify-content:space-between}
 .footer-copy{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,240,235,.2)}
 .footer-links{display:flex;gap:32px}
 .footer-links a{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,240,235,.3);text-decoration:none;transition:color .2s}
 .footer-links a:hover{color:var(--white)}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.cl-eyebrow{animation:fadeUp .6s ease .05s both}
-.cl-title{animation:fadeUp .6s ease .15s both}
-.cl-desc{animation:fadeUp .6s ease .25s both}
-.cf-eyebrow{animation:fadeUp .6s ease .1s both}
-.cf-title{animation:fadeUp .6s ease .2s both}
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .cursor,.cursor-ring{display:none}
+  body{cursor:auto}
+  nav{padding:0 20px;grid-template-columns:1fr auto}
+  .nav-center{display:none}
+  .nav-cta{display:none}
+  .nav-burger{display:flex}
+
+  /* Na mobilu: kontakt info nahoře (tmavý), formulář dole */
+  .contact-wrap{
+    grid-template-columns:1fr;
+    min-height:auto;
+  }
+  .contact-left{
+    position:static;
+    height:auto;
+    padding:48px 20px 40px;
+    order:1;
+  }
+  .cl-eyebrow{margin-bottom:28px}
+  .cl-title{font-size:clamp(40px,12vw,64px);margin-bottom:20px}
+  .cl-desc{font-size:13px;margin-bottom:32px}
+  .cl-contact-value{font-size:20px}
+  .cl-location{padding-top:24px}
+
+  .contact-right{
+    padding:48px 20px 64px;
+    order:2;
+    border-left:none;
+    border-top:1px solid var(--border);
+  }
+  .form-title{font-size:clamp(40px,12vw,64px);margin-bottom:32px}
+
+  /* Pole formuláře — 1 sloupec, 16px font (zabrání iOS zoomu) */
+  .form-row{grid-template-columns:1fr;gap:20px}
+  .form-field.full{grid-column:1}
+  .field-input{font-size:16px;padding:14px 0}
+  textarea.field-input{min-height:100px}
+  .form-submit{padding:18px 24px;font-size:11px}
+
+  footer{flex-direction:column;gap:16px;align-items:flex-start;padding:24px 20px}
+}
 </style>
 </head>
 <body>
@@ -97,103 +173,97 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
     <a href="sluzby.html">Služby</a>
     <a href="omne.html">O mně</a>
   </div>
-  <div class="nav-right"><a href="kontakt.html" class="nav-cta active">Poptat projekt</a></div>
+  <div class="nav-right">
+    <a href="kontakt.html" class="nav-cta">Poptat projekt</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="prace.html">Práce</a>
+  <a href="sluzby.html">Služby</a>
+  <a href="omne.html">O mně</a>
+  <a href="kontakt.html" class="nav-mobile-cta">Poptat projekt</a>
+</div>
 
 <div class="contact-wrap">
 
-  <!-- LEFT -->
+  <!-- LEVÝ PANEL -->
   <div class="contact-left">
     <div>
       <div class="cl-eyebrow">Kontakt</div>
-      <h1 class="cl-title">Pojďme<br><em>spolupracovat.</em></h1>
-      <p class="cl-desc">Napište mi nebo zavolejte. Ozvu se do 24 hodin a probereme jak vám mohu pomoct vytvořit obsah, který prodává.</p>
+      <h1 class="cl-title">Pojďme<br><em>spolupracovat</em></h1>
+      <p class="cl-desc">Napište mi nebo zavolejte. Ozvu se do&nbsp;24&nbsp;hodin a probereme, jak vám mohu pomoct vytvořit obsah, který prodává.</p>
       <div class="cl-contacts">
-        <a href="mailto:holy.jaroslav@gmail.com" class="cl-contact-item">
-          <span class="cci-label">Email</span>
-          <span class="cci-value">holy.jaroslav@gmail.com</span>
-        </a>
-        <a href="tel:+420733120164" class="cl-contact-item">
-          <span class="cci-label">Telefon</span>
-          <span class="cci-value">+420 733 120 164</span>
-        </a>
+        <div class="cl-contact">
+          <span class="cl-contact-label">Email</span>
+          <a href="mailto:holy.jaroslav@gmail.com" class="cl-contact-value">holy.jaroslav@gmail.com</a>
+        </div>
+        <div class="cl-contact">
+          <span class="cl-contact-label">Telefon</span>
+          <a href="tel:+420733120164" class="cl-contact-value">+420 733 120 164</a>
+        </div>
       </div>
     </div>
-    <div class="cl-bottom">
-      <div class="cl-address">Jaroslav Holý<br>Vochov 275<br>330 23 Vochov</div>
-      <div class="cl-ico">IČO: 87574381</div>
-      <div class="cl-socials">
-        <a href="https://instagram.com" class="cl-social">Instagram</a>
-        <a href="https://linkedin.com" class="cl-social">LinkedIn</a>
-        <a href="https://pinterest.com" class="cl-social">Pinterest</a>
-      </div>
-    </div>
+    <span class="cl-location">Plzeň · Česká republika</span>
   </div>
 
-  <!-- RIGHT — FORM -->
+  <!-- PRAVÝ PANEL — formulář -->
   <div class="contact-right">
-    <div class="cf-eyebrow">Poptávkový formulář</div>
-    <div class="cf-title">Řekněte mi<br><em>o projektu</em></div>
-
-    <div id="contact-form">
-      <!-- 
-        PRO FUNKČNÍ ODESÍLÁNÍ:
-        1. Jdi na formspree.io a vytvoř bezplatný účet
-        2. Vytvoř nový formulář — dostaneš URL ve tvaru https://formspree.io/f/XXXXXXXX
-        3. Nahraď action="FORMSPREE_URL" touto URL
-      -->
-      <form action="https://formspree.io/f/mdaprvbv" method="POST" id="theForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Jméno *</label>
-            <input class="form-input" type="text" name="jmeno" placeholder="Vaše jméno" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Firma</label>
-            <input class="form-input" type="text" name="firma" placeholder="Název firmy">
-          </div>
+    <div class="form-eyebrow">Poptávka</div>
+    <h2 class="form-title">Poptat<br><em>projekt</em></h2>
+    <form action="mailto:holy.jaroslav@gmail.com" method="POST" enctype="text/plain">
+      <div class="form-row">
+        <div class="form-field">
+          <label class="field-label" for="jmeno">Jméno <span class="req">*</span></label>
+          <input class="field-input" type="text" id="jmeno" name="jmeno" placeholder="Vaše jméno" required autocomplete="given-name">
         </div>
-        <div class="form-group">
-          <label class="form-label">Email *</label>
-          <input class="form-input" type="email" name="email" placeholder="vas@email.cz" required>
+        <div class="form-field">
+          <label class="field-label" for="firma">Firma</label>
+          <input class="field-input" type="text" id="firma" name="firma" placeholder="Název firmy" autocomplete="organization">
         </div>
-        <div class="form-group">
-          <label class="form-label">Telefon</label>
-          <input class="form-input" type="tel" name="telefon" placeholder="+420 xxx xxx xxx">
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label class="field-label" for="email">Email <span class="req">*</span></label>
+          <input class="field-input" type="email" id="email" name="email" placeholder="vas@email.cz" required autocomplete="email">
         </div>
-        <div class="form-group">
-          <label class="form-label">Typ projektu *</label>
-          <select class="form-select" name="typ_projektu" required>
+        <div class="form-field">
+          <label class="field-label" for="telefon">Telefon</label>
+          <input class="field-input" type="tel" id="telefon" name="telefon" placeholder="+420 xxx xxx xxx" autocomplete="tel">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field full">
+          <label class="field-label" for="typ">Typ projektu <span class="req">*</span></label>
+          <select class="field-input" id="typ" name="typ" required>
             <option value="" disabled selected>Vyberte typ</option>
             <option value="produktova-foto">Produktová fotografie</option>
-            <option value="promo-video">Promo video</option>
-            <option value="produkt-video">Produktové video</option>
+            <option value="promo-video">Promo &amp; produkt video</option>
             <option value="socialni-site">Sociální sítě</option>
-            <option value="nemovitosti">Nemovitosti & architektura</option>
+            <option value="nemovitosti">Nemovitosti &amp; architektura</option>
             <option value="jine">Jiné</option>
           </select>
         </div>
-        <div class="form-group">
-          <label class="form-label">Zpráva *</label>
-          <textarea class="form-textarea" name="zprava" placeholder="Popište váš projekt, termín a případný rozpočet..." required></textarea>
-        </div>
-        <button type="submit" class="form-submit">Odeslat poptávku ↗</button>
-        <p class="form-note">Ozvu se do 24 hodin. Veškeré informace jsou důvěrné.</p>
-      </form>
-
-      <div class="form-success" id="successMsg">
-        <div class="fs-icon">✓</div>
-        <div class="fs-title">Odesláno!</div>
-        <div class="fs-desc">Děkuji za vaši zprávu.<br>Ozvu se do 24 hodin.</div>
       </div>
-    </div>
+      <div class="form-row">
+        <div class="form-field full">
+          <label class="field-label" for="zprava">Zpráva <span class="req">*</span></label>
+          <textarea class="field-input" id="zprava" name="zprava" placeholder="Popište váš projekt, termín a případný rozpočet..." required></textarea>
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Odeslat poptávku &#x2197;&#xFE0E;</button>
+      <p class="form-note">* Povinné pole. Ozvu se do 24 hodin.</p>
+    </form>
   </div>
 
 </div>
 
 <footer>
   <span class="footer-copy">© 2025 Jaroslav Holý · IČO 87574381 · Plzeň</span>
-  <div class="footer-links"><a href="#">Instagram</a><a href="#">LinkedIn</a></div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/jaroslavholy.cz/" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com/jaroslavholy.cz/" target="_blank">Facebook</a>
+  </div>
 </footer>
 
 <script>
@@ -206,26 +276,11 @@ document.querySelectorAll('a,button,input,select,textarea').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='52px';ring.style.height='52px'});
   el.addEventListener('mouseleave',()=>{cursor.style.width='8px';cursor.style.height='8px';ring.style.width='36px';ring.style.height='36px'});
 });
-
-document.getElementById('theForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = this.querySelector('.form-submit');
-  btn.textContent = 'Odesílám...';
-  btn.disabled = true;
-  try {
-    const res = await fetch(this.action, {method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
-    if(res.ok){
-      this.style.display='none';
-      document.getElementById('successMsg').classList.add('visible');
-    } else {
-      btn.textContent = 'Chyba — zkuste znovu';
-      btn.disabled = false;
-    }
-  } catch {
-    btn.textContent = 'Chyba — zkuste znovu';
-    btn.disabled = false;
-  }
-});
+const burger=document.getElementById('navBurger'),mobileNav=document.getElementById('navMobile');
+if(burger&&mobileNav){
+  burger.addEventListener('click',()=>{burger.classList.toggle('open');mobileNav.classList.toggle('open')});
+  mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mobileNav.classList.remove('open')}));
+}
 </script>
 </body>
 </html>

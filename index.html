@@ -196,10 +196,10 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
 .work-slide:hover img{transform:scale(1.04)}
 .work-overlay{
   position:absolute;inset:0;background:var(--black);
-  opacity:.65;transition:opacity .5s;
+  opacity:0;transition:opacity .4s;
   display:flex;flex-direction:column;justify-content:flex-end;padding:32px;
 }
-.work-slide:hover .work-overlay{opacity:0}
+.work-slide:hover .work-overlay{opacity:.82}
 .work-client{
   font-family:var(--font-display);font-size:30px;font-weight:700;
   text-transform:uppercase;color:var(--white);
@@ -235,9 +235,9 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   .work-scroll-sticky{top:64px;height:calc(100vh - 64px)}
   .work-intro{flex:0 0 72vw}
   .work-slide{flex:0 0 92vw;height:calc(100vh - 64px)}
-  /* Overlay na mobilu vždy viditelný, hover ho neskrývá */
-  .work-overlay{opacity:.75}
-  .work-slide:hover .work-overlay{opacity:.75}
+  /* Overlay na mobilu úplně skrytý — fotky v přirozených barvách */
+  .work-overlay{opacity:0 !important}
+  .work-slide:hover .work-overlay{opacity:0 !important}
   .work-scroll-hint,.work-counter{display:none}
 }
 
@@ -263,6 +263,11 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   .hero-meta-num{font-size:24px}
   .hero-bottom{grid-template-columns:1fr 1fr}
   .hero-bottom-item{padding:16px 20px;font-size:9px}
+  /* Šipky a čísla — černé/tmavší na světlém pozadí */
+  .hbi-num{color:rgba(10,10,10,0.4)}
+  .hbi-arrow{color:var(--black);opacity:.7}
+  .svc-num{color:rgba(10,10,10,0.4)}
+  .svc-arrow{color:var(--black);font-size:16px}
 
   /* Sekce header */
   .section-header{padding:40px 20px 28px;grid-template-columns:1fr}

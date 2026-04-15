@@ -69,12 +69,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .svc-desc{font-size:12px;font-weight:400;color:var(--mid);line-height:1.6;letter-spacing:.02em;transition:color .2s}
 .svc-arrow{position:absolute;top:48px;right:40px;font-size:20px;color:var(--light);transition:transform .2s,color .2s}
 .service-item:hover .svc-arrow{transform:translate(4px,-4px)}
-.clients-strip{border-top:1px solid rgba(10,10,10,0.12);border-bottom:1px solid rgba(10,10,10,0.12);padding:40px;display:flex;align-items:center}
+.clients-strip{border-top:1px solid rgba(10,10,10,0.12);border-bottom:1px solid rgba(10,10,10,0.12);padding:32px 40px;display:flex;align-items:center}
 .clients-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);white-space:nowrap;margin-right:48px;padding-right:48px;border-right:1px solid rgba(10,10,10,0.12)}
-.clients-list{display:flex;flex-wrap:wrap;gap:8px 0;align-items:center}
-.client-tag{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--black);padding:0 24px;border-right:1px solid rgba(10,10,10,0.12);opacity:.4;transition:opacity .2s}
-.client-tag:hover{opacity:1}
-.client-tag:last-child{border-right:none}
+.clients-list{display:flex;flex-wrap:wrap;align-items:center;gap:0}
+.client-logo{padding:0 28px;border-right:1px solid rgba(10,10,10,0.1);display:flex;align-items:center;justify-content:center;opacity:.28;transition:opacity .3s}
+.client-logo:last-child{border-right:none}
+.client-logo:hover{opacity:.82}
+.client-logo img{max-height:26px;width:auto;max-width:90px;object-fit:contain;display:block}
+.client-logo.logo-dark img{filter:invert(1);mix-blend-mode:multiply}
+.client-logo.logo-light img{mix-blend-mode:multiply}
 .testimonials{display:grid;grid-template-columns:320px 1fr;border-top:1px solid rgba(10,10,10,0.12)}
 .testimonials-left{padding:64px 40px;border-right:1px solid rgba(10,10,10,0.12);background:var(--black);display:flex;flex-direction:column;justify-content:space-between}
 .testimonials-heading{font-family:var(--font-display);font-size:52px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;color:var(--white)}
@@ -280,12 +283,11 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
 
   /* Klienti */
   .clients-strip{flex-direction:column;align-items:flex-start;gap:0;padding:28px 20px}
-  .clients-label{margin-right:0;padding-right:0;border-right:none;border-bottom:1px solid rgba(10,10,10,0.12);padding-bottom:16px;width:100%;margin-bottom:4px}
-  .clients-list{display:grid;grid-template-columns:1fr 1fr;width:100%}
-  .client-tag{padding:14px 0;border-right:none;border-bottom:1px solid rgba(10,10,10,0.08);font-size:9px;opacity:.65}
-  .client-tag:nth-child(odd){border-right:1px solid rgba(10,10,10,0.08);padding-right:12px}
-  .client-tag:nth-child(even){padding-left:12px}
-  .client-tag:last-child,.client-tag:nth-last-child(2):nth-child(odd){border-bottom:none}
+  .clients-label{margin-right:0;padding-right:0;border-right:none;border-bottom:1px solid rgba(10,10,10,0.12);padding-bottom:16px;width:100%;margin-bottom:16px}
+  .clients-list{display:flex;flex-wrap:wrap;gap:0;width:100%}
+  .client-logo{padding:14px 16px;border-right:1px solid rgba(10,10,10,0.08);border-bottom:1px solid rgba(10,10,10,0.08);opacity:.4;flex:0 0 50%}
+  .client-logo:nth-child(2n){border-right:none}
+  .client-logo img{max-height:22px;max-width:80px}
 
   /* Testimonials */
   .testimonials{grid-template-columns:1fr}
@@ -562,16 +564,15 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
 <div class="clients-strip reveal">
   <span class="clients-label">Klienti</span>
   <div class="clients-list">
-    <span class="client-tag">Sony DADC</span>
-    <span class="client-tag">Metrostav</span>
-    <span class="client-tag">Billa</span>
-    <span class="client-tag">GXO</span>
-    <span class="client-tag">RE/MAX</span>
-    <span class="client-tag">Pilsen Steel</span>
-    <span class="client-tag">WTB</span>
-    <span class="client-tag">Greensgate</span>
-    <span class="client-tag">Kolowratovy sady</span>
-    <span class="client-tag">IBZ</span>
+    <div class="client-logo logo-dark"><img src="sony-dadc.png" alt="Sony DADC"></div>
+    <div class="client-logo logo-dark"><img src="metrostav.png" alt="Metrostav"></div>
+    <div class="client-logo logo-dark"><img src="billa.png" alt="Billa"></div>
+    <div class="client-logo logo-dark"><img src="gxo.png" alt="GXO"></div>
+    <div class="client-logo logo-light"><img src="remax.png" alt="RE/MAX"></div>
+    <div class="client-logo logo-light"><img src="pilsen-steel.png" alt="Pilsen Steel"></div>
+    <div class="client-logo logo-dark"><img src="greensgate.png" alt="Greensgate"></div>
+    <div class="client-logo logo-dark"><img src="broker-consulting.png" alt="Broker Consulting"></div>
+    <div class="client-logo logo-dark"><img src="intercora.png" alt="InterCora"></div>
   </div>
 </div>
 

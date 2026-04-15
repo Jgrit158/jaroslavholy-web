@@ -104,35 +104,63 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 
   /* Page header */
   .page-header{grid-template-columns:1fr}
-  .ph-left{padding:80px 20px 40px;border-right:none;border-bottom:1px solid var(--border)}
+  .ph-left{padding:80px 20px 36px;border-right:none;border-bottom:1px solid var(--border)}
   .ph-title{font-size:clamp(48px,12vw,80px)}
-  .ph-right{padding:32px 20px 40px}
+  .ph-right{padding:28px 20px 36px}
+  .ph-desc{font-size:14px}
 
-  /* Service blocks */
+  /* Service blocks — obraz nahoře, text dole */
   .service-block{grid-template-columns:1fr}
-  .service-block:nth-child(even) .sb-left{order:1;border-left:none}
-  .service-block:nth-child(even) .sb-right{order:2}
-  .sb-left{padding:48px 20px;border-right:none;border-bottom:1px solid var(--border)}
-  .sb-right{padding:32px 20px 48px}
-  .sb-title{font-size:clamp(36px,10vw,56px)}
-  .sb-visual{aspect-ratio:16/9}
+  .service-block .sb-right{order:1;border-bottom:1px solid var(--border)}
+  .service-block .sb-left{order:2}
+  .service-block:nth-child(even) .sb-left{order:2;border-left:none}
+  .service-block:nth-child(even) .sb-right{order:1}
+  .sb-left{padding:36px 20px 48px;border-right:none}
+  .sb-right{padding:0 0 0;display:flex;flex-direction:column;gap:0}
+  .sb-visual{aspect-ratio:4/3;width:100%}
+  .sb-price{padding:24px 20px;border-top:1px solid var(--border)}
   .sb-price-value{font-size:36px}
+  .sb-title{font-size:clamp(34px,10vw,52px)}
+  .sb-num{margin-bottom:20px}
+  .sb-desc{font-size:14px;line-height:1.7;margin-bottom:28px}
+  .sb-includes{margin-bottom:28px;gap:12px}
+  .sb-include-item{font-size:13px}
+
+  /* Poptat tlačítko — plná šířka, dobré touch target */
+  .sb-cta{
+    width:100%;
+    justify-content:center;
+    text-align:center;
+    padding:18px 28px;
+    font-size:11px;
+    margin-top:0;
+    letter-spacing:.22em;
+  }
 
   /* Process */
   .process{padding:56px 20px}
   .process-steps{grid-template-columns:1fr 1fr}
   .process-step{padding:28px 20px}
   .ps-num{font-size:36px}
+  .ps-title{font-size:18px}
 
   /* CTA strip */
-  .cta-strip{flex-direction:column;gap:24px;padding:56px 20px;align-items:flex-start}
+  .cta-strip{flex-direction:column;gap:28px;padding:56px 20px;align-items:flex-start}
   .cs-title{font-size:clamp(32px,9vw,52px)}
+  .cs-btn{
+    width:100%;
+    text-align:center;
+    padding:18px 28px;
+    font-size:11px;
+    letter-spacing:.22em;
+  }
 
   /* Footer */
   footer{flex-direction:column;gap:16px;align-items:flex-start;padding:24px 20px}
 }
 @media(max-width:480px){
   .process-steps{grid-template-columns:1fr}
+  .service-block .sb-right{border-bottom:1px solid var(--border)}
 }
 </style>
 </head>
@@ -182,7 +210,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
       <div class="sb-include-item">Dodání ve všech formátech</div>
       <div class="sb-include-item">Licence pro komerční použití</div>
     </div>
-    <a href="kontakt.html" class="sb-cta">Poptat ↗</a>
+    <a href="kontakt.html" class="sb-cta">Poptat &#x2197;&#xFE0E;</a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;"><img src="product-foto-1.jpg" alt="Produktová fotografie" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
@@ -207,7 +235,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
       <div class="sb-include-item">Grafika a titulky</div>
       <div class="sb-include-item">Verze pro různé platformy</div>
     </div>
-    <a href="kontakt.html" class="sb-cta">Poptat ↗</a>
+    <a href="kontakt.html" class="sb-cta">Poptat &#x2197;&#xFE0E;</a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;position:relative;">
@@ -240,7 +268,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
       <div class="sb-include-item">Popisky a hashtagy</div>
       <div class="sb-include-item">Plánování a publikování</div>
     </div>
-    <a href="kontakt.html" class="sb-cta">Poptat ↗</a>
+    <a href="kontakt.html" class="sb-cta">Poptat &#x2197;&#xFE0E;</a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;"><img src="yournia-4.jpg" alt="Sociální sítě" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
@@ -266,7 +294,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
       <div class="sb-include-item">Vizualizace interiéru</div>
       <div class="sb-include-item">Rychlé dodání do 48 hodin</div>
     </div>
-    <a href="kontakt.html" class="sb-cta">Poptat ↗</a>
+    <a href="kontakt.html" class="sb-cta">Poptat &#x2197;&#xFE0E;</a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;"><img src="nemovitost-1.jpg" alt="Nemovitosti" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
@@ -310,12 +338,12 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 
 <div class="cta-strip">
   <div class="cs-title">Máte projekt?<br><em>Pojďme na to.</em></div>
-  <a href="kontakt.html" class="cs-btn">Nezávazně poptat ↗</a>
+  <a href="kontakt.html" class="cs-btn">Nezávazně poptat &#x2197;&#xFE0E;</a>
 </div>
 
 <footer>
   <span class="footer-copy">© 2025 Jaroslav Holý · Plzeň</span>
-  <div class="footer-links"><a href="#">Instagram</a><a href="#">LinkedIn</a></div>
+  <div class="footer-links"><a href="https://www.instagram.com/jaroslavholy.cz/" target="_blank">Instagram</a><a href="https://www.facebook.com/jaroslavholy.cz/" target="_blank">Facebook</a></div>
 </footer>
 
 <script>

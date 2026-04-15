@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Služby — Jaroslav Holý</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,700&display=swap" rel="stylesheet">
 <style>
@@ -79,6 +80,60 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 .ph-eyebrow{animation:fadeUp .6s ease .05s both}
 .ph-title{animation:fadeUp .6s ease .15s both}
 .ph-right{animation:fadeUp .6s ease .25s both}
+
+/* Hamburger */
+.nav-burger{display:none;flex-direction:column;justify-content:space-between;width:24px;height:16px;background:none;border:none;cursor:pointer;padding:0;margin-left:16px}
+.nav-burger span{display:block;width:100%;height:1.5px;background:var(--black);transition:all .3s}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(242,240,235,0.98);backdrop-filter:blur(16px);z-index:99;flex-direction:column;border-bottom:1px solid rgba(10,10,10,0.12);padding:8px 0}
+.nav-mobile.open{display:flex}
+.nav-mobile a{padding:18px 24px;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);text-decoration:none;border-bottom:1px solid rgba(10,10,10,0.06);transition:color .2s}
+.nav-mobile a:hover{color:var(--black)}
+.nav-mobile .nav-mobile-cta{color:var(--black);font-weight:600;border-bottom:none}
+
+/* Mobile responsive */
+@media(max-width:768px){
+  .cursor,.cursor-ring{display:none}
+  body{cursor:auto}
+  nav{padding:0 20px;grid-template-columns:1fr auto}
+  .nav-center{display:none}
+  .nav-cta{display:none}
+  .nav-burger{display:flex}
+
+  /* Page header */
+  .page-header{grid-template-columns:1fr}
+  .ph-left{padding:80px 20px 40px;border-right:none;border-bottom:1px solid var(--border)}
+  .ph-title{font-size:clamp(48px,12vw,80px)}
+  .ph-right{padding:32px 20px 40px}
+
+  /* Service blocks */
+  .service-block{grid-template-columns:1fr}
+  .service-block:nth-child(even) .sb-left{order:1;border-left:none}
+  .service-block:nth-child(even) .sb-right{order:2}
+  .sb-left{padding:48px 20px;border-right:none;border-bottom:1px solid var(--border)}
+  .sb-right{padding:32px 20px 48px}
+  .sb-title{font-size:clamp(36px,10vw,56px)}
+  .sb-visual{aspect-ratio:16/9}
+  .sb-price-value{font-size:36px}
+
+  /* Process */
+  .process{padding:56px 20px}
+  .process-steps{grid-template-columns:1fr 1fr}
+  .process-step{padding:28px 20px}
+  .ps-num{font-size:36px}
+
+  /* CTA strip */
+  .cta-strip{flex-direction:column;gap:24px;padding:56px 20px;align-items:flex-start}
+  .cs-title{font-size:clamp(32px,9vw,52px)}
+
+  /* Footer */
+  footer{flex-direction:column;gap:16px;align-items:flex-start;padding:24px 20px}
+}
+@media(max-width:480px){
+  .process-steps{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -92,8 +147,17 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
     <a href="sluzby.html" class="active">Služby</a>
     <a href="omne.html">O mně</a>
   </div>
-  <div class="nav-right"><a href="kontakt.html" class="nav-cta">Poptat projekt</a></div>
+  <div class="nav-right">
+    <a href="kontakt.html" class="nav-cta">Poptat projekt</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="prace.html">Práce</a>
+  <a href="sluzby.html" class="active">Služby</a>
+  <a href="omne.html">O mně</a>
+  <a href="kontakt.html" class="nav-mobile-cta">Poptat projekt</a>
+</div>
 
 <div class="page-header">
   <div class="ph-left">
@@ -264,6 +328,8 @@ document.querySelectorAll('a,button').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='52px';ring.style.height='52px'});
   el.addEventListener('mouseleave',()=>{cursor.style.width='8px';cursor.style.height='8px';ring.style.width='36px';ring.style.height='36px'});
 });
+const burger=document.getElementById('navBurger'),mobileNav=document.getElementById('navMobile');
+if(burger&&mobileNav){burger.addEventListener('click',()=>{burger.classList.toggle('open');mobileNav.classList.toggle('open')});mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mobileNav.classList.remove('open')}))}
 </script>
 </body>
 </html>

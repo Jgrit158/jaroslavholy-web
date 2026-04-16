@@ -69,12 +69,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .svc-desc{font-size:12px;font-weight:400;color:var(--mid);line-height:1.6;letter-spacing:.02em;transition:color .2s}
 .svc-arrow{position:absolute;top:48px;right:40px;font-size:20px;color:var(--light);transition:transform .2s,color .2s}
 .service-item:hover .svc-arrow{transform:translate(4px,-4px)}
-.clients-strip{border-top:1px solid rgba(10,10,10,0.12);border-bottom:1px solid rgba(10,10,10,0.12);padding:40px;display:flex;align-items:center}
-.clients-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);white-space:nowrap;margin-right:48px;padding-right:48px;border-right:1px solid rgba(10,10,10,0.12)}
-.clients-list{display:flex;flex-wrap:wrap;gap:8px 0;align-items:center}
-.client-tag{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--black);padding:0 24px;border-right:1px solid rgba(10,10,10,0.12);opacity:.4;transition:opacity .2s}
-.client-tag:hover{opacity:1}
-.client-tag:last-child{border-right:none}
+.clients-strip{border-top:1px solid rgba(10,10,10,0.12);border-bottom:1px solid rgba(10,10,10,0.12);padding:20px 0;overflow:hidden;position:relative}
+.clients-strip::before,.clients-strip::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.clients-strip::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
+.clients-strip::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+.clients-marquee{display:flex;animation:clientsTick 30s linear infinite;white-space:nowrap;width:max-content}
+.clients-marquee:hover{animation-play-state:paused}
+.client-tag{font-family:var(--font-display);font-size:13px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--black);opacity:.35;padding:0 48px;display:inline-flex;align-items:center;gap:14px;transition:opacity .25s}
+.client-tag:hover{opacity:.9}
+.client-dot{width:3px;height:3px;border-radius:50%;background:rgba(10,10,10,0.3);flex-shrink:0}
+@keyframes clientsTick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .testimonials{display:grid;grid-template-columns:320px 1fr;border-top:1px solid rgba(10,10,10,0.12)}
 .testimonials-left{padding:64px 40px;border-right:1px solid rgba(10,10,10,0.12);background:var(--black);display:flex;flex-direction:column;justify-content:space-between}
 .testimonials-heading{font-family:var(--font-display);font-size:52px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;color:var(--white)}
@@ -279,13 +283,9 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
   .service-item:nth-child(odd){border-right:1px solid rgba(10,10,10,0.1)}
 
   /* Klienti */
-  .clients-strip{flex-direction:column;align-items:flex-start;gap:0;padding:28px 20px}
-  .clients-label{margin-right:0;padding-right:0;border-right:none;border-bottom:1px solid rgba(10,10,10,0.12);padding-bottom:16px;width:100%;margin-bottom:4px}
-  .clients-list{display:grid;grid-template-columns:1fr 1fr;width:100%}
-  .client-tag{padding:14px 0;border-right:none;border-bottom:1px solid rgba(10,10,10,0.08);font-size:9px;opacity:.65}
-  .client-tag:nth-child(odd){border-right:1px solid rgba(10,10,10,0.08);padding-right:12px}
-  .client-tag:nth-child(even){padding-left:12px}
-  .client-tag:last-child,.client-tag:nth-last-child(2):nth-child(odd){border-bottom:none}
+  .clients-strip{padding:16px 0}
+  .clients-marquee{animation-duration:20s}
+  .client-tag{font-size:11px;padding:0 32px}
 
   /* Testimonials */
   .testimonials{grid-template-columns:1fr}
@@ -560,18 +560,33 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.06);paddi
 </div>
 
 <div class="clients-strip reveal">
-  <span class="clients-label">Klienti</span>
-  <div class="clients-list">
-    <span class="client-tag">Sony DADC</span>
-    <span class="client-tag">Metrostav</span>
-    <span class="client-tag">Billa</span>
-    <span class="client-tag">GXO</span>
-    <span class="client-tag">RE/MAX</span>
-    <span class="client-tag">Pilsen Steel</span>
-    <span class="client-tag">WTB</span>
-    <span class="client-tag">Greensgate</span>
-    <span class="client-tag">Kolowratovy sady</span>
-    <span class="client-tag">IBZ</span>
+  <div class="clients-marquee">
+    <span class="client-tag"><span class="client-dot"></span>Sony DADC</span>
+    <span class="client-tag"><span class="client-dot"></span>Metrostav</span>
+    <span class="client-tag"><span class="client-dot"></span>Billa</span>
+    <span class="client-tag"><span class="client-dot"></span>GXO</span>
+    <span class="client-tag"><span class="client-dot"></span>RE/MAX</span>
+    <span class="client-tag"><span class="client-dot"></span>Pilsen Steel</span>
+    <span class="client-tag"><span class="client-dot"></span>WTB</span>
+    <span class="client-tag"><span class="client-dot"></span>Greensgate</span>
+    <span class="client-tag"><span class="client-dot"></span>Kolowratovy sady</span>
+    <span class="client-tag"><span class="client-dot"></span>IBZ</span>
+    <span class="client-tag"><span class="client-dot"></span>Broker Consulting</span>
+    <span class="client-tag"><span class="client-dot"></span>InterCora</span>
+    <span class="client-tag"><span class="client-dot"></span>Yournia</span>
+    <span class="client-tag"><span class="client-dot"></span>Sony DADC</span>
+    <span class="client-tag"><span class="client-dot"></span>Metrostav</span>
+    <span class="client-tag"><span class="client-dot"></span>Billa</span>
+    <span class="client-tag"><span class="client-dot"></span>GXO</span>
+    <span class="client-tag"><span class="client-dot"></span>RE/MAX</span>
+    <span class="client-tag"><span class="client-dot"></span>Pilsen Steel</span>
+    <span class="client-tag"><span class="client-dot"></span>WTB</span>
+    <span class="client-tag"><span class="client-dot"></span>Greensgate</span>
+    <span class="client-tag"><span class="client-dot"></span>Kolowratovy sady</span>
+    <span class="client-tag"><span class="client-dot"></span>IBZ</span>
+    <span class="client-tag"><span class="client-dot"></span>Broker Consulting</span>
+    <span class="client-tag"><span class="client-dot"></span>InterCora</span>
+    <span class="client-tag"><span class="client-dot"></span>Yournia</span>
   </div>
 </div>
 

@@ -141,8 +141,10 @@ const TRANSLATIONS = {
     'wo.type.product': 'Produktová fotografie',
     'wo.type.arch':    'Architektura interiéry',
     'wo.type.jewelry': 'Šperky lifestyle',
+    'wo.type.video':   'Promo video',
     'wo.tag.photo':    'Foto',
     'wo.tag.reality':  'Reality',
+    'wo.tag.video':    'Video',
 
     /* CONTACT PAGE */
     'contact.eyebrow':      'Kontakt',
@@ -310,8 +312,10 @@ const TRANSLATIONS = {
     'wo.type.product': 'Product photography',
     'wo.type.arch':    'Architecture & interiors',
     'wo.type.jewelry': 'Jewellery lifestyle',
+    'wo.type.video':   'Promo video',
     'wo.tag.photo':    'Photo',
     'wo.tag.reality':  'Real estate',
+    'wo.tag.video':    'Video',
 
     /* CONTACT PAGE */
     'contact.eyebrow':      'Contact',
@@ -479,8 +483,10 @@ const TRANSLATIONS = {
     'wo.type.product': 'Produktfotografie',
     'wo.type.arch':    'Architektur & Innenräume',
     'wo.type.jewelry': 'Schmuck Lifestyle',
+    'wo.type.video':   'Promo-Video',
     'wo.tag.photo':    'Foto',
     'wo.tag.reality':  'Immobilien',
+    'wo.tag.video':    'Video',
 
     /* CONTACT PAGE */
     'contact.eyebrow':      'Kontakt',

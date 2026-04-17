@@ -51,8 +51,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr)}
 .work-item{border-right:1px solid rgba(10,10,10,0.1);border-bottom:1px solid rgba(10,10,10,0.1);position:relative;overflow:hidden;aspect-ratio:1/1.1;cursor:none}
 .work-item:nth-child(3n){border-right:none}
-.work-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
-.work-item:hover img{transform:scale(1.04)}
+.work-item img,.work-item video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.work-item:hover img,.work-item:hover video{transform:scale(1.04)}
 .work-overlay{position:absolute;inset:0;background:var(--black);opacity:0;transition:opacity .3s;display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
 .work-item:hover .work-overlay{opacity:.88}
 .wo-client{font-family:var(--font-display);font-size:28px;font-weight:700;text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:6px}
@@ -149,6 +149,7 @@ footer{background:var(--black);padding:28px 40px;display:flex;align-items:center
   <button class="filter-btn" data-filter="reality" data-i18n="filter.reality">Nemovitosti</button>
 </div>
 <div class="portfolio-grid" id="grid">
+  <div class="work-item" data-cat="video"><video autoplay muted playsinline loop preload="auto" style="width:100%;height:100%;object-fit:cover;display:block;"><source src="eli-saab.mp4" type="video/mp4"></video><div class="work-overlay"><div class="wo-client">Eli Saab</div><div class="wo-type" data-i18n="wo.type.video">Promo video</div></div><span class="wo-tag" data-i18n="wo.tag.video">Video</span></div>
   <div class="work-item" data-cat="foto"><img src="kolowrat-1.jpg" alt="Produktová fotografie Kolowratovy sady Plzeň" loading="lazy"><div class="work-overlay"><div class="wo-client">Kolowratovy sady</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
   <div class="work-item" data-cat="foto"><img src="Creditimmo-1.jpg" alt="Produktová fotografie Creditimmo" loading="lazy"><div class="work-overlay"><div class="wo-client">Creditimmo</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
   <div class="work-item" data-cat="reality"><img src="nemovitost-1.jpg" alt="Fotografie interiéru nemovitosti Plzeň" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type" data-i18n="wo.type.arch">Architektura interiéry</div></div><span class="wo-tag" data-i18n="wo.tag.reality">Reality</span></div>

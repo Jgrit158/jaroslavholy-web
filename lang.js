@@ -34,7 +34,7 @@ const TRANSLATIONS = {
 
     /* WORK — index */
     'work.eyebrow':      'Vybraná práce',
-    'work.link':         'Celé portfolio ↗',
+    'work.link':         'Celé portfolio <span class="arr"></span>',
     'work.type.product': 'Produktová fotografie',
     'work.type.jewelry': 'Šperky & lifestyle',
 
@@ -61,12 +61,12 @@ const TRANSLATIONS = {
     /* CTA — index */
     'cta.title': 'Máte<br>projekt?<br><em>Pojďme<br>na to.</em>',
     'cta.desc':  'Napište mi nebo zavolejte. Ozvu se do 24 hodin a probereme jak vám mohu pomoct vytvořit obsah, který prodává.',
-    'cta.btn':   'Nezávazně poptat ↗',
+    'cta.btn':   'Nezávazně poptat <span class="arr"></span>',
 
     /* ABOUT PAGE */
     'about.eyebrow': 'O mně',
     'about.role':    'Fotograf a videograf s více než 20 lety zkušeností. Specializuji se na produktovou fotografii, promo videa a obsah pro sociální sítě — s důrazem na výsledky, které prodávají.',
-    'about.link':    'Poptat projekt ↗',
+    'about.link':    'Poptat projekt <span class="arr"></span>',
     'about.bio.eyebrow': 'Příběh',
     'about.bio': 'Jmenuji se <strong>Jaroslav Holý</strong> a vizuální tvorba je mou vášní již přes 20 let. Začínal jsem jako samostatný fotograf, ale postupem času se z mé práce vyvinula malá agentura nabízející komplexní vizuální služby.<br><br>Specializuji se na produktovou fotografii, promo videa a obsah pro sociální sítě. Spolupracuji se značkami různých velikostí — od malých podnikatelů po velké korporace jako Sony DADC, Metrostav nebo Pilsen Steel.<br><br>Každý projekt beru jako příležitost vytvořit něco, co přesáhne očekávání klienta — vizuál, který nejen vypadá dobře, ale skutečně funguje.',
     'val1.title': 'Preciznost',
@@ -77,7 +77,7 @@ const TRANSLATIONS = {
     'val3.desc':  'Fotografie a videa vytvářím s jasným cílem — aby fungovaly. Aby prodávaly, zaujaly a budovaly značku.',
     'about.cta.title': 'Máte<br>projekt?<br><em>Pojďme<br>na to.</em>',
     'about.cta.desc':  'Napište mi nebo zavolejte. Ozvu se do 24 hodin a probereme, jak vám mohu pomoct vytvořit obsah, který prodává.',
-    'about.cta.btn':   'Nezávazně poptat ↗',
+    'about.cta.btn':   'Nezávazně poptat <span class="arr"></span>',
 
     /* SERVICES PAGE */
     'services.ph.eyebrow': 'Nabídka',
@@ -115,7 +115,7 @@ const TRANSLATIONS = {
     'sb4.inc5':  'Vizualizace interiéru',
     'sb4.inc6':  'Rychlé dodání do 48 hodin',
     'sb4.price.note': 'Závisí na velikosti nemovitosti',
-    'sb.cta':         'Poptat ↗',
+    'sb.cta':         'Poptat <span class="arr"></span>',
     'sb.price.label': 'Cena od',
     'process.eyebrow':  'Jak to funguje',
     'process.title':    'Jak <em>spolupracujeme</em>',
@@ -128,7 +128,7 @@ const TRANSLATIONS = {
     'ps4.title': 'Dodání',
     'ps4.desc':  'Hotové soubory ve všech potřebných formátech doručím typicky do 5–7 pracovních dní.',
     'cta.strip.title': 'Máte projekt?<br><em>Pojďme na to.</em>',
-    'cta.strip.btn':   'Nezávazně poptat ↗',
+    'cta.strip.btn':   'Nezávazně poptat <span class="arr"></span>',
 
     /* PORTFOLIO PAGE */
     'portfolio.eyebrow': 'Portfolio',
@@ -170,7 +170,7 @@ const TRANSLATIONS = {
     'form.type.opt4':       'Nemovitosti & architektura',
     'form.type.opt5':       'Jiné',
     'form.message.ph':      'Popište váš projekt, termín a případný rozpočet...',
-    'form.submit':          'Odeslat poptávku ↗',
+    'form.submit':          'Odeslat poptávku <span class="arr"></span>',
     'form.note':            '* Povinné pole. Ozvu se do 24 hodin.',
   },
 
@@ -203,7 +203,7 @@ const TRANSLATIONS = {
 
     /* WORK — index */
     'work.eyebrow':      'Selected work',
-    'work.link':         'Full portfolio ↗',
+    'work.link':         'Full portfolio <span class="arr"></span>',
     'work.type.product': 'Product photography',
     'work.type.jewelry': 'Jewellery & lifestyle',
 
@@ -230,12 +230,12 @@ const TRANSLATIONS = {
     /* CTA — index */
     'cta.title': 'Have a<br>project?<br><em>Let\'s<br>do this.</em>',
     'cta.desc':  'Write or call me. I will get back to you within 24 hours and we will discuss how I can help you create content that sells.',
-    'cta.btn':   'Get in touch ↗',
+    'cta.btn':   'Get in touch <span class="arr"></span>',
 
     /* ABOUT PAGE */
     'about.eyebrow': 'About me',
     'about.role':    'Photographer and videographer with over 20 years of experience. I specialise in product photography, promo videos and social media content — with a focus on results that sell.',
-    'about.link':    'Request project ↗',
+    'about.link':    'Request project <span class="arr"></span>',
     'about.bio.eyebrow': 'Story',
     'about.bio': 'My name is <strong>Jaroslav Holý</strong> and visual creation has been my passion for over 20 years. I started as an independent photographer, but over time my work evolved into a small agency offering comprehensive visual services.<br><br>I specialise in product photography, promo videos and social media content. I work with brands of all sizes — from small entrepreneurs to large corporations like Sony DADC, Metrostav or Pilsen Steel.<br><br>I treat every project as an opportunity to create something that exceeds the client\'s expectations — a visual that not only looks great but truly works.',
     'val1.title': 'Precision',
@@ -246,7 +246,7 @@ const TRANSLATIONS = {
     'val3.desc':  'I create photos and videos with a clear purpose — to work. To sell, attract attention and build the brand.',
     'about.cta.title': 'Have a<br>project?<br><em>Let\'s<br>do this.</em>',
     'about.cta.desc':  'Write or call me. I will get back to you within 24 hours and we will discuss how I can help you create content that sells.',
-    'about.cta.btn':   'Get in touch ↗',
+    'about.cta.btn':   'Get in touch <span class="arr"></span>',
 
     /* SERVICES PAGE */
     'services.ph.eyebrow': 'Offer',
@@ -284,7 +284,7 @@ const TRANSLATIONS = {
     'sb4.inc5':  'Interior visualizations',
     'sb4.inc6':  'Fast delivery within 48 hours',
     'sb4.price.note': 'Depends on the size of the property',
-    'sb.cta':         'Request ↗',
+    'sb.cta':         'Request <span class="arr"></span>',
     'sb.price.label': 'Starting from',
     'process.eyebrow':  'How it works',
     'process.title':    'How we <em>work together</em>',
@@ -297,7 +297,7 @@ const TRANSLATIONS = {
     'ps4.title': 'Delivery',
     'ps4.desc':  'Finished files in all required formats, typically delivered within 5–7 working days.',
     'cta.strip.title': 'Have a project?<br><em>Let\'s do this.</em>',
-    'cta.strip.btn':   'Get in touch ↗',
+    'cta.strip.btn':   'Get in touch <span class="arr"></span>',
 
     /* PORTFOLIO PAGE */
     'portfolio.eyebrow': 'Portfolio',
@@ -339,7 +339,7 @@ const TRANSLATIONS = {
     'form.type.opt4':       'Real estate & architecture',
     'form.type.opt5':       'Other',
     'form.message.ph':      'Describe your project, timeline and budget...',
-    'form.submit':          'Send inquiry ↗',
+    'form.submit':          'Send inquiry <span class="arr"></span>',
     'form.note':            '* Required field. I will get back to you within 24 hours.',
   },
 
@@ -372,7 +372,7 @@ const TRANSLATIONS = {
 
     /* WORK — index */
     'work.eyebrow':      'Ausgewählte Arbeiten',
-    'work.link':         'Gesamtes Portfolio ↗',
+    'work.link':         'Gesamtes Portfolio <span class="arr"></span>',
     'work.type.product': 'Produktfotografie',
     'work.type.jewelry': 'Schmuck & Lifestyle',
 
@@ -399,12 +399,12 @@ const TRANSLATIONS = {
     /* CTA — index */
     'cta.title': 'Haben Sie<br>ein Projekt?<br><em>Los<br>geht\'s.</em>',
     'cta.desc':  'Schreiben oder rufen Sie mich an. Ich melde mich innerhalb von 24 Stunden und wir besprechen, wie ich Ihnen helfen kann, Inhalte zu erstellen, die verkaufen.',
-    'cta.btn':   'Unverbindlich anfragen ↗',
+    'cta.btn':   'Unverbindlich anfragen <span class="arr"></span>',
 
     /* ABOUT PAGE */
     'about.eyebrow': 'Über mich',
     'about.role':    'Fotograf und Videograf mit über 20 Jahren Erfahrung. Ich spezialisiere mich auf Produktfotografie, Promo-Videos und Social-Media-Inhalte — mit Fokus auf Ergebnisse, die verkaufen.',
-    'about.link':    'Projekt anfragen ↗',
+    'about.link':    'Projekt anfragen <span class="arr"></span>',
     'about.bio.eyebrow': 'Geschichte',
     'about.bio': 'Mein Name ist <strong>Jaroslav Holý</strong> und visuelle Kreation ist meine Leidenschaft seit über 20 Jahren. Ich begann als selbstständiger Fotograf, aber im Laufe der Zeit entwickelte sich meine Arbeit zu einer kleinen Agentur, die umfassende visuelle Dienstleistungen anbietet.<br><br>Ich spezialisiere mich auf Produktfotografie, Promo-Videos und Social-Media-Inhalte. Ich arbeite mit Marken aller Größen — von kleinen Unternehmern bis zu großen Konzernen wie Sony DADC, Metrostav oder Pilsen Steel.<br><br>Jedes Projekt betrachte ich als Chance, etwas zu schaffen, das die Erwartungen des Kunden übertrifft — ein Bild, das nicht nur gut aussieht, sondern wirklich funktioniert.',
     'val1.title': 'Präzision',
@@ -415,7 +415,7 @@ const TRANSLATIONS = {
     'val3.desc':  'Ich erstelle Fotos und Videos mit einem klaren Ziel — damit sie funktionieren. Damit sie verkaufen, Aufmerksamkeit erregen und die Marke aufbauen.',
     'about.cta.title': 'Haben Sie<br>ein Projekt?<br><em>Los<br>geht\'s.</em>',
     'about.cta.desc':  'Schreiben oder rufen Sie mich an. Ich melde mich innerhalb von 24 Stunden und wir besprechen, wie ich Ihnen helfen kann, Inhalte zu erstellen, die verkaufen.',
-    'about.cta.btn':   'Unverbindlich anfragen ↗',
+    'about.cta.btn':   'Unverbindlich anfragen <span class="arr"></span>',
 
     /* SERVICES PAGE */
     'services.ph.eyebrow': 'Angebot',
@@ -453,7 +453,7 @@ const TRANSLATIONS = {
     'sb4.inc5':  'Innenraumvisualisierungen',
     'sb4.inc6':  'Schnelle Lieferung innerhalb 48 Stunden',
     'sb4.price.note': 'Abhängig von der Größe der Immobilie',
-    'sb.cta':         'Anfragen ↗',
+    'sb.cta':         'Anfragen <span class="arr"></span>',
     'sb.price.label': 'Ab',
     'process.eyebrow':  'So funktioniert es',
     'process.title':    'Wie wir <em>zusammenarbeiten</em>',
@@ -466,7 +466,7 @@ const TRANSLATIONS = {
     'ps4.title': 'Lieferung',
     'ps4.desc':  'Fertige Dateien in allen erforderlichen Formaten, typischerweise innerhalb von 5–7 Werktagen geliefert.',
     'cta.strip.title': 'Haben Sie ein Projekt?<br><em>Los geht\'s.</em>',
-    'cta.strip.btn':   'Unverbindlich anfragen ↗',
+    'cta.strip.btn':   'Unverbindlich anfragen <span class="arr"></span>',
 
     /* PORTFOLIO PAGE */
     'portfolio.eyebrow': 'Portfolio',
@@ -508,7 +508,7 @@ const TRANSLATIONS = {
     'form.type.opt4':       'Immobilien & Architektur',
     'form.type.opt5':       'Sonstiges',
     'form.message.ph':      'Beschreiben Sie Ihr Projekt, Zeitplan und Budget...',
-    'form.submit':          'Anfrage senden ↗',
+    'form.submit':          'Anfrage senden <span class="arr"></span>',
     'form.note':            '* Pflichtfeld. Ich melde mich innerhalb von 24 Stunden.',
   }
 };
@@ -560,6 +560,11 @@ function setLang(lang) {
    INIT on page load
    ============================================================ */
 (function() {
+  // Inject arrow CSS globally
+  var s = document.createElement('style');
+  s.textContent = '.arr{display:inline-block;width:.6em;height:.6em;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg);vertical-align:middle;margin-left:.3em;flex-shrink:0;position:relative;top:-.08em}';
+  document.head.appendChild(s);
+
   var saved = 'cs';
   try { saved = localStorage.getItem('jhLang') || 'cs'; } catch(e) {}
   applyLang(saved);

@@ -191,13 +191,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 .lang-btn:hover,.lang-btn.active{color:var(--black)}
 .lang-sep{font-size:8px;color:var(--light);pointer-events:none;line-height:1}
 @media(max-width:768px){.lang-switcher{margin-right:10px}}
-.sb-mobile-play{display:none;position:absolute;inset:0;align-items:center;justify-content:center;z-index:2;text-decoration:none}
-.sb-mobile-play svg{filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
-@media(max-width:768px){
-  .sb-visual iframe{display:none}
-  .sb-visual{background:url(https://img.youtube.com/vi/9rOmsWmm4yw/hqdefault.jpg) center/cover no-repeat;padding-top:56.25%!important}
-  .sb-mobile-play{display:flex}
-}
 </style>
 </head>
 <body>
@@ -246,7 +239,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
       <div class="sb-include-item" data-i18n="sb1.inc4">Dodání ve všech formátech</div>
       <div class="sb-include-item" data-i18n="sb1.inc5">Licence pro komerční použití</div>
     </div>
-    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat ↗</a>
+    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat <span class="arr"></span></a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;"><img src="product-foto-1.jpg" alt="Ukázka produktové fotografie — profesionální studio Plzeň" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
@@ -271,20 +264,18 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
       <div class="sb-include-item" data-i18n="sb2.inc4">Grafika a titulky</div>
       <div class="sb-include-item" data-i18n="sb2.inc5">Verze pro různé platformy</div>
     </div>
-    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat ↗</a>
+    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat <span class="arr"></span></a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;position:relative;">
       <iframe
         src="https://www.youtube.com/embed/9rOmsWmm4yw?autoplay=1&mute=1&loop=1&playlist=9rOmsWmm4yw&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1"
         frameborder="0"
-        allow="autoplay; fullscreen"
+        allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen
+        title="Promo video ukázka"
         style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.78%;height:177.78%;min-width:100%;min-height:100%;pointer-events:none;"
       ></iframe>
-      <a class="sb-mobile-play" href="https://www.youtube.com/watch?v=9rOmsWmm4yw" target="_blank" rel="noopener" aria-label="Přehrát video">
-        <svg viewBox="0 0 68 48" width="72" height="51"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20z" fill="white"/></svg>
-      </a>
     </div>
     <div class="sb-price">
       <div class="sb-price-label" data-i18n="sb.price.label">Cena od</div>
@@ -307,7 +298,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
       <div class="sb-include-item" data-i18n="sb3.inc4">Popisky a hashtagy</div>
       <div class="sb-include-item" data-i18n="sb3.inc5">Plánování a publikování</div>
     </div>
-    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat ↗</a>
+    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat <span class="arr"></span></a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;"><img src="yournia-4.jpg" alt="Lifestyle fotografie šperků pro sociální sítě a Instagram" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
@@ -333,7 +324,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
       <div class="sb-include-item" data-i18n="sb4.inc5">Vizualizace interiéru</div>
       <div class="sb-include-item" data-i18n="sb4.inc6">Rychlé dodání do 48 hodin</div>
     </div>
-    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat ↗</a>
+    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat <span class="arr"></span></a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;"><img src="nemovitost-1.jpg" alt="Profesionální fotografie nemovitosti a interiérů Plzeň" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
@@ -377,7 +368,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 
 <div class="cta-strip">
   <div class="cs-title" data-i18n="cta.strip.title">Máte projekt?<br><em>Pojďme na to.</em></div>
-  <a href="kontakt.html" class="cs-btn" data-i18n="cta.strip.btn">Nezávazně poptat ↗</a>
+  <a href="kontakt.html" class="cs-btn" data-i18n="cta.strip.btn">Nezávazně poptat <span class="arr"></span></a>
 </div>
 
 <footer>

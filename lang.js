@@ -557,6 +557,34 @@ function setLang(lang) {
 }
 
 /* ============================================================
+   YouTube autoplay fix for iOS (IFrame Player API)
+   ============================================================ */
+(function() {
+  function initYT() {
+    var iframes = document.querySelectorAll('#yt-hero, #yt-sluzby');
+    if (!iframes.length) return;
+    window.onYouTubeIframeAPIReady = function() {
+      iframes.forEach(function(iframe) {
+        new YT.Player(iframe.id, {
+          events: {
+            onReady: function(e) { e.target.mute(); e.target.playVideo(); },
+            onStateChange: function(e) { if (e.data === 0) e.target.playVideo(); }
+          }
+        });
+      });
+    };
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initYT);
+  } else {
+    initYT();
+  }
+})();
+
+/* ============================================================
    INIT on page load
    ============================================================ */
 (function() {

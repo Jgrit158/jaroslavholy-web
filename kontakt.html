@@ -177,6 +177,15 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 
   footer{flex-direction:column;gap:16px;align-items:flex-start;padding:24px 20px}
 }
+
+/* =============================================
+   LANGUAGE SWITCHER
+   ============================================= */
+.lang-switcher{display:flex;align-items:center;gap:5px;margin-right:16px}
+.lang-btn{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);background:none;border:none;cursor:pointer;padding:3px 1px;transition:color .2s;line-height:1}
+.lang-btn:hover,.lang-btn.active{color:var(--black)}
+.lang-sep{font-size:8px;color:var(--light);pointer-events:none;line-height:1}
+@media(max-width:768px){.lang-switcher{margin-right:10px}}
 </style>
 </head>
 <body>
@@ -186,20 +195,20 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 <nav>
   <a href="index.html" class="nav-logo">Jaroslav Holý</a>
   <div class="nav-center">
-    <a href="prace.html">Práce</a>
-    <a href="sluzby.html">Služby</a>
-    <a href="omne.html">O mně</a>
+    <a href="prace.html"><span data-i18n="nav.work">Práce</span></a>
+    <a href="sluzby.html"><span data-i18n="nav.services">Služby</span></a>
+    <a href="omne.html"><span data-i18n="nav.about">O mně</span></a>
   </div>
-  <div class="nav-right">
-    <a href="kontakt.html" class="nav-cta">Poptat projekt</a>
+  <div class="nav-right"><div class="lang-switcher"><button class="lang-btn" data-lang="cs" onclick="setLang('cs')">CZ</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button></div>
+    <a href="kontakt.html" class="nav-cta"><span data-i18n="nav.cta">Poptat projekt</span></a>
     <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="nav-mobile" id="navMobile">
-  <a href="prace.html">Práce</a>
-  <a href="sluzby.html">Služby</a>
-  <a href="omne.html">O mně</a>
-  <a href="kontakt.html" class="nav-mobile-cta">Poptat projekt</a>
+  <a href="prace.html"><span data-i18n="nav.work">Práce</span></a>
+  <a href="sluzby.html"><span data-i18n="nav.services">Služby</span></a>
+  <a href="omne.html"><span data-i18n="nav.about">O mně</span></a>
+  <a href="kontakt.html" class="nav-mobile-cta"><span data-i18n="nav.mobile.cta">Poptat projekt</span></a>
 </div>
 
 <div class="contact-wrap">
@@ -207,69 +216,69 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
   <!-- LEVÝ PANEL -->
   <div class="contact-left">
     <div>
-      <div class="cl-eyebrow">Kontakt</div>
-      <h1 class="cl-title">Pojďme<br><em>spolupracovat</em></h1>
+      <div class="cl-eyebrow" data-i18n="contact.eyebrow">Kontakt</div>
+      <h1 class="cl-title" data-i18n="contact.title">Pojďme<br><em>spolupracovat</em></h1>
       <p class="cl-desc">Napište mi nebo zavolejte. Ozvu se do&nbsp;24&nbsp;hodin a probereme, jak vám mohu pomoct vytvořit obsah, který prodává.</p>
       <div class="cl-contacts">
         <div class="cl-contact">
-          <span class="cl-contact-label">Email</span>
+          <span class="cl-contact-label" data-i18n="contact.email.label">Email</span>
           <a href="mailto:holy.jaroslav@gmail.com" class="cl-contact-value">holy.jaroslav@gmail.com</a>
         </div>
         <div class="cl-contact">
-          <span class="cl-contact-label">Telefon</span>
+          <span class="cl-contact-label" data-i18n="contact.phone.label">Telefon</span>
           <a href="tel:+420733120164" class="cl-contact-value">+420 733 120 164</a>
         </div>
       </div>
     </div>
-    <span class="cl-location">Plzeň · Česká republika</span>
+    <span class="cl-location" data-i18n="contact.location">Plzeň · Česká republika</span>
   </div>
 
   <!-- PRAVÝ PANEL — formulář -->
   <div class="contact-right">
-    <div class="form-eyebrow">Poptávka</div>
-    <h2 class="form-title">Poptat<br><em>projekt</em></h2>
+    <div class="form-eyebrow" data-i18n="form.eyebrow">Poptávka</div>
+    <h2 class="form-title" data-i18n="form.title">Poptat<br><em>projekt</em></h2>
     <form action="mailto:holy.jaroslav@gmail.com" method="POST" enctype="text/plain">
       <div class="form-row">
         <div class="form-field">
-          <label class="field-label" for="jmeno">Jméno <span class="req">*</span></label>
-          <input class="field-input" type="text" id="jmeno" name="jmeno" placeholder="Vaše jméno" required autocomplete="given-name">
+          <label class="field-label" for="jmeno"><span data-i18n="form.name.label">Jméno</span> <span class="req">*</span></label>
+          <input class="field-input" type="text" id="jmeno" name="jmeno" placeholder="Vaše jméno" data-i18n-ph="form.name.ph" required autocomplete="given-name">
         </div>
         <div class="form-field">
-          <label class="field-label" for="firma">Firma</label>
-          <input class="field-input" type="text" id="firma" name="firma" placeholder="Název firmy" autocomplete="organization">
+          <label class="field-label" for="firma"><span data-i18n="form.company.label">Firma</span></label>
+          <input class="field-input" type="text" id="firma" name="firma" placeholder="Název firmy" data-i18n-ph="form.company.ph" autocomplete="organization">
         </div>
       </div>
       <div class="form-row">
         <div class="form-field">
-          <label class="field-label" for="email">Email <span class="req">*</span></label>
-          <input class="field-input" type="email" id="email" name="email" placeholder="vas@email.cz" required autocomplete="email">
+          <label class="field-label" for="email"><span data-i18n="form.email.label">Email</span> <span class="req">*</span></label>
+          <input class="field-input" type="email" id="email" name="email" placeholder="vas@email.cz" data-i18n-ph="form.email.ph" required autocomplete="email">
         </div>
         <div class="form-field">
-          <label class="field-label" for="telefon">Telefon</label>
-          <input class="field-input" type="tel" id="telefon" name="telefon" placeholder="+420 xxx xxx xxx" autocomplete="tel">
+          <label class="field-label" for="telefon"><span data-i18n="form.phone.label">Telefon</span></label>
+          <input class="field-input" type="tel" id="telefon" name="telefon" placeholder="+420 xxx xxx xxx" data-i18n-ph="form.phone.ph" autocomplete="tel">
         </div>
       </div>
       <div class="form-row">
         <div class="form-field full">
-          <label class="field-label" for="typ">Typ projektu <span class="req">*</span></label>
+          <label class="field-label" for="typ"><span data-i18n="form.type.label">Typ projektu</span> <span class="req">*</span></label>
           <select class="field-input" id="typ" name="typ" required>
-            <option value="" disabled selected>Vyberte typ</option>
-            <option value="produktova-foto">Produktová fotografie</option>
-            <option value="promo-video">Promo &amp; produkt video</option>
-            <option value="socialni-site">Sociální sítě</option>
-            <option value="nemovitosti">Nemovitosti &amp; architektura</option>
-            <option value="jine">Jiné</option>
+            <option value="" disabled selected data-i18n-opt="form.type.ph">Vyberte typ</option>
+            <option value="produktova-foto" data-i18n-opt="form.type.opt1">Produktová fotografie</option>
+            <option value="promo-video" data-i18n-opt="form.type.opt2">Promo &amp; produkt video</option>
+            <option value="socialni-site" data-i18n-opt="form.type.opt3">Sociální sítě</option>
+            <option value="nemovitosti" data-i18n-opt="form.type.opt4">Nemovitosti &amp; architektura</option>
+            <option value="jine" data-i18n-opt="form.type.opt5">Jiné</option>
           </select>
         </div>
       </div>
       <div class="form-row">
         <div class="form-field full">
-          <label class="field-label" for="zprava">Zpráva <span class="req">*</span></label>
-          <textarea class="field-input" id="zprava" name="zprava" placeholder="Popište váš projekt, termín a případný rozpočet..." required></textarea>
+          <label class="field-label" for="zprava"><span data-i18n="form.message.label">Zpráva</span> <span class="req">*</span></label>
+          <textarea class="field-input" id="zprava" name="zprava" placeholder="Popište váš projekt, termín a případný rozpočet..." data-i18n-ph="form.message.ph" required></textarea>
         </div>
       </div>
-      <button type="submit" class="form-submit">Odeslat poptávku &#x2197;&#xFE0E;</button>
-      <p class="form-note">* Povinné pole. Ozvu se do 24 hodin.</p>
+      <button type="submit" class="form-submit" data-i18n="form.submit">Odeslat poptávku ↗</button>
+      <p class="form-note" data-i18n="form.note">* Povinné pole. Ozvu se do 24 hodin.</p>
     </form>
   </div>
 
@@ -299,5 +308,6 @@ if(burger&&mobileNav){
   mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mobileNav.classList.remove('open')}));
 }
 </script>
+<script src="lang.js"></script>
 </body>
 </html>

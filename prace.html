@@ -102,6 +102,15 @@ footer{background:var(--black);padding:28px 40px;display:flex;align-items:center
   .work-item:nth-child(2n){border-right:1px solid rgba(10,10,10,0.1)}
   .work-item:nth-child(3n){border-right:1px solid rgba(10,10,10,0.1)}
 }
+
+/* =============================================
+   LANGUAGE SWITCHER
+   ============================================= */
+.lang-switcher{display:flex;align-items:center;gap:5px;margin-right:16px}
+.lang-btn{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);background:none;border:none;cursor:pointer;padding:3px 1px;transition:color .2s;line-height:1}
+.lang-btn:hover,.lang-btn.active{color:var(--black)}
+.lang-sep{font-size:8px;color:var(--light);pointer-events:none;line-height:1}
+@media(max-width:768px){.lang-switcher{margin-right:10px}}
 </style>
 </head>
 <body>
@@ -110,62 +119,62 @@ footer{background:var(--black);padding:28px 40px;display:flex;align-items:center
 <nav>
   <a href="index.html" class="nav-logo">Jaroslav Holý</a>
   <div class="nav-center">
-    <a href="prace.html" class="active">Práce</a>
-    <a href="sluzby.html">Služby</a>
-    <a href="omne.html">O mně</a>
+    <a href="prace.html" class="active"><span data-i18n="nav.work">Práce</span></a>
+    <a href="sluzby.html"><span data-i18n="nav.services">Služby</span></a>
+    <a href="omne.html"><span data-i18n="nav.about">O mně</span></a>
   </div>
-  <div class="nav-right">
-    <a href="kontakt.html" class="nav-cta">Poptat projekt</a>
+  <div class="nav-right"><div class="lang-switcher"><button class="lang-btn" data-lang="cs" onclick="setLang('cs')">CZ</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button></div>
+    <a href="kontakt.html" class="nav-cta"><span data-i18n="nav.cta">Poptat projekt</span></a>
     <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="nav-mobile" id="navMobile">
-  <a href="prace.html" class="active">Práce</a>
-  <a href="sluzby.html">Služby</a>
-  <a href="omne.html">O mně</a>
-  <a href="kontakt.html" class="nav-mobile-cta">Poptat projekt</a>
+  <a href="prace.html" class="active"><span data-i18n="nav.work">Práce</span></a>
+  <a href="sluzby.html"><span data-i18n="nav.services">Služby</span></a>
+  <a href="omne.html"><span data-i18n="nav.about">O mně</span></a>
+  <a href="kontakt.html" class="nav-mobile-cta"><span data-i18n="nav.mobile.cta">Poptat projekt</span></a>
 </div>
 <div class="portfolio-header">
   <div>
-    <div class="ph-eyebrow">Portfolio</div>
+    <div class="ph-eyebrow" data-i18n="portfolio.eyebrow">Portfolio</div>
     <h1 class="ph-title">Selected<br><em>work</em></h1>
   </div>
-  <p class="ph-desc">Vizuální obsah který prodává. Fotografie a video pro značky které chtějí být vidět.</p>
+  <p class="ph-desc" data-i18n="portfolio.desc">Vizuální obsah který prodává. Fotografie a video pro značky které chtějí být vidět.</p>
 </div>
 <div class="filter-bar">
-  <button class="filter-btn active" data-filter="all">Vše</button>
-  <button class="filter-btn" data-filter="foto">Foto</button>
-  <button class="filter-btn" data-filter="video">Video</button>
-  <button class="filter-btn" data-filter="social">Sociální sítě</button>
-  <button class="filter-btn" data-filter="reality">Nemovitosti</button>
+  <button class="filter-btn active" data-filter="all" data-i18n="filter.all">Vše</button>
+  <button class="filter-btn" data-filter="foto" data-i18n="filter.photo">Foto</button>
+  <button class="filter-btn" data-filter="video" data-i18n="filter.video">Video</button>
+  <button class="filter-btn" data-filter="social" data-i18n="filter.social">Sociální sítě</button>
+  <button class="filter-btn" data-filter="reality" data-i18n="filter.reality">Nemovitosti</button>
 </div>
 <div class="portfolio-grid" id="grid">
-  <div class="work-item" data-cat="foto"><img src="kolowrat-1.jpg" alt="Produktová fotografie Kolowratovy sady Plzeň" loading="lazy"><div class="work-overlay"><div class="wo-client">Kolowratovy sady</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="foto"><img src="Creditimmo-1.jpg" alt="Produktová fotografie Creditimmo" loading="lazy"><div class="work-overlay"><div class="wo-client">Creditimmo</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="reality"><img src="nemovitost-1.jpg" alt="Fotografie interiéru nemovitosti Plzeň" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiéry</div></div><span class="wo-tag">Reality</span></div>
-  <div class="work-item" data-cat="foto"><img src="Elemi-1.jpg" alt="Produktová fotografie Elemi" loading="lazy"><div class="work-overlay"><div class="wo-client">Elemi</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="foto"><img src="Elemi-2.jpg" alt="Produktová fotografie Elemi — detailní záběr" loading="lazy"><div class="work-overlay"><div class="wo-client">Elemi</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="reality"><img src="nemovitost-2.jpg" alt="Fotografie světlého interiéru bytu" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiéry</div></div><span class="wo-tag">Reality</span></div>
-  <div class="work-item" data-cat="foto"><img src="Creditimmo-2.jpg" alt="Produktová fotografie Creditimmo detail" loading="lazy"><div class="work-overlay"><div class="wo-client">Creditimmo</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="foto"><img src="ibz-1.jpg" alt="Produktová fotografie IBZ průmyslové produkty" loading="lazy"><div class="work-overlay"><div class="wo-client">IBZ</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="reality"><img src="nemovitost-3.jpg" alt="Profesionální realitní fotografie bytu" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiéry</div></div><span class="wo-tag">Reality</span></div>
-  <div class="work-item" data-cat="foto"><img src="Creditimmo-3.jpg" alt="Produktová fotografie Creditimmo zbraně" loading="lazy"><div class="work-overlay"><div class="wo-client">Creditimmo</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="foto"><img src="wtb-4.jpg" alt="Produktová fotografie WTB cyklistické vybavení" loading="lazy"><div class="work-overlay"><div class="wo-client">WTB</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="reality"><img src="nemovitost-13.jpg" alt="Fotografie interiéru nemovitosti architektura" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiéry</div></div><span class="wo-tag">Reality</span></div>
-  <div class="work-item" data-cat="foto"><img src="yournia-5.jpg" alt="Lifestyle fotografie šperků Yournia" loading="lazy"><div class="work-overlay"><div class="wo-client">Yournia</div><div class="wo-type">Šperky lifestyle</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="foto"><img src="Creditimmo-4.jpg" alt="Produktová fotografie Creditimmo pažba" loading="lazy"><div class="work-overlay"><div class="wo-client">Creditimmo</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="reality"><img src="nemovitost-7.jpg" alt="Fotografie pokoje — realitní fotografie" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiéry</div></div><span class="wo-tag">Reality</span></div>
-  <div class="work-item" data-cat="foto"><img src="ibz-2.jpg" alt="Produktová fotografie IBZ detail" loading="lazy"><div class="work-overlay"><div class="wo-client">IBZ</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="foto"><img src="oasis-1.jpg" alt="Produktová fotografie Oasis" loading="lazy"><div class="work-overlay"><div class="wo-client">Oasis</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="reality"><img src="nemovitost-8.jpg" alt="Fotografie koupelny realitní fotografie" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiéry</div></div><span class="wo-tag">Reality</span></div>
-  <div class="work-item" data-cat="foto"><img src="yournia-2.jpg" alt="Lifestyle fotografie šperků Yournia detail" loading="lazy"><div class="work-overlay"><div class="wo-client">Yournia</div><div class="wo-type">Šperky lifestyle</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="foto"><img src="ibz-3.jpg" alt="Produktová fotografie IBZ průmyslový záběr" loading="lazy"><div class="work-overlay"><div class="wo-client">IBZ</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="reality"><img src="nemovitost-11.jpg" alt="Fotografie obývacího pokoje realitní fotografie Plzeň" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiéry</div></div><span class="wo-tag">Reality</span></div>
-  <div class="work-item" data-cat="foto"><img src="wtb-5.jpg" alt="Produktová fotografie WTB komponenty" loading="lazy"><div class="work-overlay"><div class="wo-client">WTB</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="foto"><img src="oasis-2.jpg" alt="Produktová fotografie Oasis detail" loading="lazy"><div class="work-overlay"><div class="wo-client">Oasis</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="reality"><img src="nemovitost-12.jpg" alt="Architektonická fotografie nemovitosti" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type">Architektura interiéry</div></div><span class="wo-tag">Reality</span></div>
-  <div class="work-item" data-cat="foto"><img src="wtb-2.jpg" alt="Produktová fotografie WTB cyklistika" loading="lazy"><div class="work-overlay"><div class="wo-client">WTB</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
-  <div class="work-item" data-cat="foto"><img src="kolowrat-3.jpg" alt="Produktová fotografie Kolowratovy sady detail" loading="lazy"><div class="work-overlay"><div class="wo-client">Kolowratovy sady</div><div class="wo-type">Produktová fotografie</div></div><span class="wo-tag">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="kolowrat-1.jpg" alt="Produktová fotografie Kolowratovy sady Plzeň" loading="lazy"><div class="work-overlay"><div class="wo-client">Kolowratovy sady</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="Creditimmo-1.jpg" alt="Produktová fotografie Creditimmo" loading="lazy"><div class="work-overlay"><div class="wo-client">Creditimmo</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-1.jpg" alt="Fotografie interiéru nemovitosti Plzeň" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type" data-i18n="wo.type.arch">Architektura interiéry</div></div><span class="wo-tag" data-i18n="wo.tag.reality">Reality</span></div>
+  <div class="work-item" data-cat="foto"><img src="Elemi-1.jpg" alt="Produktová fotografie Elemi" loading="lazy"><div class="work-overlay"><div class="wo-client">Elemi</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="Elemi-2.jpg" alt="Produktová fotografie Elemi — detailní záběr" loading="lazy"><div class="work-overlay"><div class="wo-client">Elemi</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-2.jpg" alt="Fotografie světlého interiéru bytu" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type" data-i18n="wo.type.arch">Architektura interiéry</div></div><span class="wo-tag" data-i18n="wo.tag.reality">Reality</span></div>
+  <div class="work-item" data-cat="foto"><img src="Creditimmo-2.jpg" alt="Produktová fotografie Creditimmo detail" loading="lazy"><div class="work-overlay"><div class="wo-client">Creditimmo</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="ibz-1.jpg" alt="Produktová fotografie IBZ průmyslové produkty" loading="lazy"><div class="work-overlay"><div class="wo-client">IBZ</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-3.jpg" alt="Profesionální realitní fotografie bytu" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type" data-i18n="wo.type.arch">Architektura interiéry</div></div><span class="wo-tag" data-i18n="wo.tag.reality">Reality</span></div>
+  <div class="work-item" data-cat="foto"><img src="Creditimmo-3.jpg" alt="Produktová fotografie Creditimmo zbraně" loading="lazy"><div class="work-overlay"><div class="wo-client">Creditimmo</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="wtb-4.jpg" alt="Produktová fotografie WTB cyklistické vybavení" loading="lazy"><div class="work-overlay"><div class="wo-client">WTB</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-13.jpg" alt="Fotografie interiéru nemovitosti architektura" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type" data-i18n="wo.type.arch">Architektura interiéry</div></div><span class="wo-tag" data-i18n="wo.tag.reality">Reality</span></div>
+  <div class="work-item" data-cat="foto"><img src="yournia-5.jpg" alt="Lifestyle fotografie šperků Yournia" loading="lazy"><div class="work-overlay"><div class="wo-client">Yournia</div><div class="wo-type" data-i18n="wo.type.jewelry">Šperky lifestyle</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="Creditimmo-4.jpg" alt="Produktová fotografie Creditimmo pažba" loading="lazy"><div class="work-overlay"><div class="wo-client">Creditimmo</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-7.jpg" alt="Fotografie pokoje — realitní fotografie" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type" data-i18n="wo.type.arch">Architektura interiéry</div></div><span class="wo-tag" data-i18n="wo.tag.reality">Reality</span></div>
+  <div class="work-item" data-cat="foto"><img src="ibz-2.jpg" alt="Produktová fotografie IBZ detail" loading="lazy"><div class="work-overlay"><div class="wo-client">IBZ</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="oasis-1.jpg" alt="Produktová fotografie Oasis" loading="lazy"><div class="work-overlay"><div class="wo-client">Oasis</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-8.jpg" alt="Fotografie koupelny realitní fotografie" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type" data-i18n="wo.type.arch">Architektura interiéry</div></div><span class="wo-tag" data-i18n="wo.tag.reality">Reality</span></div>
+  <div class="work-item" data-cat="foto"><img src="yournia-2.jpg" alt="Lifestyle fotografie šperků Yournia detail" loading="lazy"><div class="work-overlay"><div class="wo-client">Yournia</div><div class="wo-type" data-i18n="wo.type.jewelry">Šperky lifestyle</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="ibz-3.jpg" alt="Produktová fotografie IBZ průmyslový záběr" loading="lazy"><div class="work-overlay"><div class="wo-client">IBZ</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-11.jpg" alt="Fotografie obývacího pokoje realitní fotografie Plzeň" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type" data-i18n="wo.type.arch">Architektura interiéry</div></div><span class="wo-tag" data-i18n="wo.tag.reality">Reality</span></div>
+  <div class="work-item" data-cat="foto"><img src="wtb-5.jpg" alt="Produktová fotografie WTB komponenty" loading="lazy"><div class="work-overlay"><div class="wo-client">WTB</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="oasis-2.jpg" alt="Produktová fotografie Oasis detail" loading="lazy"><div class="work-overlay"><div class="wo-client">Oasis</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="reality"><img src="nemovitost-12.jpg" alt="Architektonická fotografie nemovitosti" loading="lazy"><div class="work-overlay"><div class="wo-client">Nemovitosti</div><div class="wo-type" data-i18n="wo.type.arch">Architektura interiéry</div></div><span class="wo-tag" data-i18n="wo.tag.reality">Reality</span></div>
+  <div class="work-item" data-cat="foto"><img src="wtb-2.jpg" alt="Produktová fotografie WTB cyklistika" loading="lazy"><div class="work-overlay"><div class="wo-client">WTB</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
+  <div class="work-item" data-cat="foto"><img src="kolowrat-3.jpg" alt="Produktová fotografie Kolowratovy sady detail" loading="lazy"><div class="work-overlay"><div class="wo-client">Kolowratovy sady</div><div class="wo-type" data-i18n="wo.type.product">Produktová fotografie</div></div><span class="wo-tag" data-i18n="wo.tag.photo">Foto</span></div>
 </div>
 <footer>
   <span class="footer-copy">2025 Jaroslav Holý IČO 87574381 Plzeň</span>
@@ -190,5 +199,6 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
 const burger=document.getElementById('navBurger'),mobileNav=document.getElementById('navMobile');
 if(burger&&mobileNav){burger.addEventListener('click',()=>{burger.classList.toggle('open');mobileNav.classList.toggle('open')});mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mobileNav.classList.remove('open')}))}
 </script>
+<script src="lang.js"></script>
 </body>
 </html>

@@ -164,6 +164,15 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
   .stat-item:last-child{border-bottom:none}
   .stat-num{font-size:44px}
 }
+
+/* =============================================
+   LANGUAGE SWITCHER
+   ============================================= */
+.lang-switcher{display:flex;align-items:center;gap:5px;margin-right:16px}
+.lang-btn{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);background:none;border:none;cursor:pointer;padding:3px 1px;transition:color .2s;line-height:1}
+.lang-btn:hover,.lang-btn.active{color:var(--black)}
+.lang-sep{font-size:8px;color:var(--light);pointer-events:none;line-height:1}
+@media(max-width:768px){.lang-switcher{margin-right:10px}}
 </style>
 </head>
 <body>
@@ -173,32 +182,32 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 <nav>
   <a href="index.html" class="nav-logo">Jaroslav Holý</a>
   <div class="nav-center">
-    <a href="prace.html">Práce</a>
-    <a href="sluzby.html">Služby</a>
-    <a href="omne.html" class="active">O mně</a>
+    <a href="prace.html"><span data-i18n="nav.work">Práce</span></a>
+    <a href="sluzby.html"><span data-i18n="nav.services">Služby</span></a>
+    <a href="omne.html" class="active"><span data-i18n="nav.about">O mně</span></a>
   </div>
-  <div class="nav-right">
-    <a href="kontakt.html" class="nav-cta">Poptat projekt</a>
+  <div class="nav-right"><div class="lang-switcher"><button class="lang-btn" data-lang="cs" onclick="setLang('cs')">CZ</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button></div>
+    <a href="kontakt.html" class="nav-cta"><span data-i18n="nav.cta">Poptat projekt</span></a>
     <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="nav-mobile" id="navMobile">
-  <a href="prace.html">Práce</a>
-  <a href="sluzby.html">Služby</a>
-  <a href="omne.html" class="active">O mně</a>
-  <a href="kontakt.html" class="nav-mobile-cta">Poptat projekt</a>
+  <a href="prace.html"><span data-i18n="nav.work">Práce</span></a>
+  <a href="sluzby.html"><span data-i18n="nav.services">Služby</span></a>
+  <a href="omne.html" class="active"><span data-i18n="nav.about">O mně</span></a>
+  <a href="kontakt.html" class="nav-mobile-cta"><span data-i18n="nav.mobile.cta">Poptat projekt</span></a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow">O mně</div>
+      <div class="hero-eyebrow" data-i18n="about.eyebrow">O mně</div>
       <h1 class="hero-name">Jaroslav<br><em>Holý</em></h1>
     </div>
     <div class="hero-right">
-      <p class="hero-role">Fotograf a videograf s více než 20 lety zkušeností. Specializuji se na produktovou fotografii, promo videa a obsah pro sociální sítě — s důrazem na výsledky, které prodávají.</p>
-      <a href="kontakt.html" class="hero-link">Poptat projekt &#x2197;&#xFE0E;</a>
+      <p class="hero-role" data-i18n="about.role">Fotograf a videograf s více než 20 lety zkušeností. Specializuji se na produktovou fotografii, promo videa a obsah pro sociální sítě — s důrazem na výsledky, které prodávají.</p>
+      <a href="kontakt.html" class="hero-link" data-i18n="about.link">Poptat projekt ↗</a>
     </div>
   </div>
 </section>
@@ -207,43 +216,39 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 <div class="stats">
   <div class="stat-item reveal">
     <div class="stat-num">20+</div>
-    <div class="stat-label">let praxe</div>
+    <div class="stat-label" data-i18n="hero.meta.years">let praxe</div>
   </div>
   <div class="stat-item reveal reveal-d1">
     <div class="stat-num">150+</div>
-    <div class="stat-label">klientů</div>
+    <div class="stat-label" data-i18n="hero.meta.clients">klientů</div>
   </div>
   <div class="stat-item reveal reveal-d2">
     <div class="stat-num">4</div>
-    <div class="stat-label">specializace</div>
+    <div class="stat-label" data-i18n="hero.meta.spec">specializace</div>
   </div>
 </div>
 
 <!-- BIO + VALUES -->
 <div class="about-grid">
   <div class="about-bio reveal">
-    <div class="bio-eyebrow">Příběh</div>
-    <p class="bio-text">
-      Jmenuji se <strong>Jaroslav Holý</strong> a vizuální tvorba je mou vášní již přes 20 let. Začínal jsem jako samostatný fotograf, ale postupem času se z mé práce vyvinula malá agentura nabízející komplexní vizuální služby.<br><br>
-      Specializuji se na produktovou fotografii, promo videa a obsah pro sociální sítě. Spolupracuji se značkami různých velikostí — od malých podnikatelů po velké korporace jako Sony DADC, Metrostav nebo Pilsen Steel.<br><br>
-      Každý projekt beru jako příležitost vytvořit něco, co přesáhne očekávání klienta — vizuál, který nejen vypadá dobře, ale skutečně funguje.
-    </p>
+    <div class="bio-eyebrow" data-i18n="about.bio.eyebrow">Příběh</div>
+    <p class="bio-text" data-i18n="about.bio">Jmenuji se <strong>Jaroslav Holý</strong> a vizuální tvorba je mou vášní již přes 20 let. Začínal jsem jako samostatný fotograf, ale postupem času se z mé práce vyvinula malá agentura nabízející komplexní vizuální služby.<br><br>Specializuji se na produktovou fotografii, promo videa a obsah pro sociální sítě. Spolupracuji se značkami různých velikostí — od malých podnikatelů po velké korporace jako Sony DADC, Metrostav nebo Pilsen Steel.<br><br>Každý projekt beru jako příležitost vytvořit něco, co přesáhne očekávání klienta — vizuál, který nejen vypadá dobře, ale skutečně funguje.</p>
   </div>
   <div class="about-values">
     <div class="value-item reveal">
       <div class="value-num">01</div>
-      <div class="value-title">Preciznost</div>
-      <p class="value-desc">Každý záběr je promyšlený. Věnuji pozornost kompozici, světlu a detailům, které ostatní přehlédnou.</p>
+      <div class="value-title" data-i18n="val1.title">Preciznost</div>
+      <p class="value-desc" data-i18n="val1.desc">Každý záběr je promyšlený. Věnuji pozornost kompozici, světlu a detailům, které ostatní přehlédnou.</p>
     </div>
     <div class="value-item reveal reveal-d1">
       <div class="value-num">02</div>
-      <div class="value-title">Individualita</div>
-      <p class="value-desc">Žádné šablony. Každý klient dostane přístup šitý na míru jeho značce a cílům.</p>
+      <div class="value-title" data-i18n="val2.title">Individualita</div>
+      <p class="value-desc" data-i18n="val2.desc">Žádné šablony. Každý klient dostane přístup šitý na míru jeho značce a cílům.</p>
     </div>
     <div class="value-item reveal reveal-d2">
       <div class="value-num">03</div>
-      <div class="value-title">Výsledky</div>
-      <p class="value-desc">Fotografie a videa vytvářím s jasným cílem — aby fungovaly. Aby prodávaly, zaujaly a budovaly značku.</p>
+      <div class="value-title" data-i18n="val3.title">Výsledky</div>
+      <p class="value-desc" data-i18n="val3.desc">Fotografie a videa vytvářím s jasným cílem — aby fungovaly. Aby prodávaly, zaujaly a budovaly značku.</p>
     </div>
   </div>
 </div>
@@ -263,10 +268,10 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 
 <!-- CTA -->
 <section class="cta reveal">
-  <h2 class="cta-title">Máte<br>projekt?<br><em>Pojďme<br>na to.</em></h2>
+  <h2 class="cta-title" data-i18n="about.cta.title">Máte<br>projekt?<br><em>Pojďme<br>na to.</em></h2>
   <div class="cta-right reveal reveal-d2">
-    <p class="cta-desc">Napište mi nebo zavolejte. Ozvu se do 24 hodin a probereme, jak vám mohu pomoct vytvořit obsah, který prodává.</p>
-    <a href="kontakt.html" class="cta-btn">Nezávazně poptat &#x2197;&#xFE0E;</a>
+    <p class="cta-desc" data-i18n="about.cta.desc">Napište mi nebo zavolejte. Ozvu se do 24 hodin a probereme, jak vám mohu pomoct vytvořit obsah, který prodává.</p>
+    <a href="kontakt.html" class="cta-btn" data-i18n="about.cta.btn">Nezávazně poptat ↗</a>
   </div>
 </section>
 
@@ -299,5 +304,6 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:.12});
 revealEls.forEach(el=>obs.observe(el));
 </script>
+<script src="lang.js"></script>
 </body>
 </html>

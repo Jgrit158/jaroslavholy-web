@@ -182,6 +182,15 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
   .process-steps{grid-template-columns:1fr}
   .service-block .sb-right{border-bottom:1px solid var(--border)}
 }
+
+/* =============================================
+   LANGUAGE SWITCHER
+   ============================================= */
+.lang-switcher{display:flex;align-items:center;gap:5px;margin-right:16px}
+.lang-btn{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);background:none;border:none;cursor:pointer;padding:3px 1px;transition:color .2s;line-height:1}
+.lang-btn:hover,.lang-btn.active{color:var(--black)}
+.lang-sep{font-size:8px;color:var(--light);pointer-events:none;line-height:1}
+@media(max-width:768px){.lang-switcher{margin-right:10px}}
 </style>
 </head>
 <body>
@@ -191,29 +200,29 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 <nav>
   <a href="index.html" class="nav-logo">Jaroslav Holý</a>
   <div class="nav-center">
-    <a href="prace.html">Práce</a>
-    <a href="sluzby.html" class="active">Služby</a>
-    <a href="omne.html">O mně</a>
+    <a href="prace.html"><span data-i18n="nav.work">Práce</span></a>
+    <a href="sluzby.html" class="active"><span data-i18n="nav.services">Služby</span></a>
+    <a href="omne.html"><span data-i18n="nav.about">O mně</span></a>
   </div>
-  <div class="nav-right">
-    <a href="kontakt.html" class="nav-cta">Poptat projekt</a>
+  <div class="nav-right"><div class="lang-switcher"><button class="lang-btn" data-lang="cs" onclick="setLang('cs')">CZ</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><span class="lang-sep">·</span><button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button></div>
+    <a href="kontakt.html" class="nav-cta"><span data-i18n="nav.cta">Poptat projekt</span></a>
     <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="nav-mobile" id="navMobile">
-  <a href="prace.html">Práce</a>
-  <a href="sluzby.html" class="active">Služby</a>
-  <a href="omne.html">O mně</a>
-  <a href="kontakt.html" class="nav-mobile-cta">Poptat projekt</a>
+  <a href="prace.html"><span data-i18n="nav.work">Práce</span></a>
+  <a href="sluzby.html" class="active"><span data-i18n="nav.services">Služby</span></a>
+  <a href="omne.html"><span data-i18n="nav.about">O mně</span></a>
+  <a href="kontakt.html" class="nav-mobile-cta"><span data-i18n="nav.mobile.cta">Poptat projekt</span></a>
 </div>
 
 <div class="page-header">
   <div class="ph-left">
-    <div class="ph-eyebrow">Nabídka</div>
+    <div class="ph-eyebrow" data-i18n="services.ph.eyebrow">Nabídka</div>
     <h1 class="ph-title">What<br><em>I offer</em></h1>
   </div>
   <div class="ph-right">
-    <p class="ph-desc">Profesionální vizuální obsah pro firmy a podnikatele. Od produktové fotografie po kompletní video kampaně.</p>
+    <p class="ph-desc" data-i18n="services.ph.desc">Profesionální vizuální obsah pro firmy a podnikatele. Od produktové fotografie po kompletní video kampaně.</p>
   </div>
 </div>
 
@@ -221,23 +230,23 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 <div class="service-block">
   <div class="sb-left">
     <div class="sb-num">01</div>
-    <div class="sb-title">Produktová<br><em>fotografie</em></div>
-    <p class="sb-desc">Profesionální záběry, které prodávají vaše produkty. Od jednoduchých e-shop fotek po komplexní kampaňové sety s nasvícením a retuší.</p>
+    <div class="sb-title" data-i18n="sb1.title">Produktová<br><em>fotografie</em></div>
+    <p class="sb-desc" data-i18n="sb1.desc">Profesionální záběry, které prodávají vaše produkty. Od jednoduchých e-shop fotek po komplexní kampaňové sety s nasvícením a retuší.</p>
     <div class="sb-includes">
-      <div class="sb-include-item">Příprava a aranžmá produktů</div>
-      <div class="sb-include-item">Profesionální nasvícení</div>
-      <div class="sb-include-item">Detailní retušerské práce</div>
-      <div class="sb-include-item">Dodání ve všech formátech</div>
-      <div class="sb-include-item">Licence pro komerční použití</div>
+      <div class="sb-include-item" data-i18n="sb1.inc1">Příprava a aranžmá produktů</div>
+      <div class="sb-include-item" data-i18n="sb1.inc2">Profesionální nasvícení</div>
+      <div class="sb-include-item" data-i18n="sb1.inc3">Detailní retušerské práce</div>
+      <div class="sb-include-item" data-i18n="sb1.inc4">Dodání ve všech formátech</div>
+      <div class="sb-include-item" data-i18n="sb1.inc5">Licence pro komerční použití</div>
     </div>
-    <a href="kontakt.html" class="sb-cta">Poptat &#x2197;&#xFE0E;</a>
+    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat ↗</a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;"><img src="product-foto-1.jpg" alt="Ukázka produktové fotografie — profesionální studio Plzeň" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
     <div class="sb-price">
-      <div class="sb-price-label">Cena od</div>
+      <div class="sb-price-label" data-i18n="sb.price.label">Cena od</div>
       <div class="sb-price-value">5 000 Kč</div>
-      <div class="sb-price-note">Cena závisí na počtu produktů a složitosti</div>
+      <div class="sb-price-note" data-i18n="sb1.price.note">Cena závisí na počtu produktů a složitosti</div>
     </div>
   </div>
 </div>
@@ -246,16 +255,16 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 <div class="service-block">
   <div class="sb-left">
     <div class="sb-num">02</div>
-    <div class="sb-title">Promo &<br><em>produkt video</em></div>
-    <p class="sb-desc">Videa, která zaujmou a prodávají. Promo spoty pro sociální sítě, produktová videa pro e-shopy nebo firemní prezentace pro klienty a investory.</p>
+    <div class="sb-title" data-i18n="sb2.title">Promo &<br><em>produkt video</em></div>
+    <p class="sb-desc" data-i18n="sb2.desc">Videa, která zaujmou a prodávají. Promo spoty pro sociální sítě, produktová videa pro e-shopy nebo firemní prezentace pro klienty a investory.</p>
     <div class="sb-includes">
-      <div class="sb-include-item">Předprodukční příprava a scénář</div>
-      <div class="sb-include-item">Profesionální natáčení</div>
-      <div class="sb-include-item">Střih a colour grading</div>
-      <div class="sb-include-item">Grafika a titulky</div>
-      <div class="sb-include-item">Verze pro různé platformy</div>
+      <div class="sb-include-item" data-i18n="sb2.inc1">Předprodukční příprava a scénář</div>
+      <div class="sb-include-item" data-i18n="sb2.inc2">Profesionální natáčení</div>
+      <div class="sb-include-item" data-i18n="sb2.inc3">Střih a colour grading</div>
+      <div class="sb-include-item" data-i18n="sb2.inc4">Grafika a titulky</div>
+      <div class="sb-include-item" data-i18n="sb2.inc5">Verze pro různé platformy</div>
     </div>
-    <a href="kontakt.html" class="sb-cta">Poptat &#x2197;&#xFE0E;</a>
+    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat ↗</a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;position:relative;">
@@ -268,9 +277,9 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
       ></iframe>
     </div>
     <div class="sb-price">
-      <div class="sb-price-label">Cena od</div>
+      <div class="sb-price-label" data-i18n="sb.price.label">Cena od</div>
       <div class="sb-price-value">15 000 Kč</div>
-      <div class="sb-price-note">Závisí na délce a náročnosti produkce</div>
+      <div class="sb-price-note" data-i18n="sb2.price.note">Závisí na délce a náročnosti produkce</div>
     </div>
   </div>
 </div>
@@ -279,23 +288,23 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 <div class="service-block">
   <div class="sb-left">
     <div class="sb-num">03</div>
-    <div class="sb-title">Sociální<br><em>sítě</em></div>
-    <p class="sb-desc">Pravidelný obsah pro Instagram, Facebook a LinkedIn. Foto, video i reels — vše připravené tak, aby váš profil vypadal konzistentně a profesionálně.</p>
+    <div class="sb-title" data-i18n="sb3.title">Sociální<br><em>sítě</em></div>
+    <p class="sb-desc" data-i18n="sb3.desc">Pravidelný obsah pro Instagram, Facebook a LinkedIn. Foto, video i reels — vše připravené tak, aby váš profil vypadal konzistentně a profesionálně.</p>
     <div class="sb-includes">
-      <div class="sb-include-item">Obsahová strategie</div>
-      <div class="sb-include-item">Měsíční focení a natáčení</div>
-      <div class="sb-include-item">Editace a postprodukce</div>
-      <div class="sb-include-item">Popisky a hashtagy</div>
-      <div class="sb-include-item">Plánování a publikování</div>
+      <div class="sb-include-item" data-i18n="sb3.inc1">Obsahová strategie</div>
+      <div class="sb-include-item" data-i18n="sb3.inc2">Měsíční focení a natáčení</div>
+      <div class="sb-include-item" data-i18n="sb3.inc3">Editace a postprodukce</div>
+      <div class="sb-include-item" data-i18n="sb3.inc4">Popisky a hashtagy</div>
+      <div class="sb-include-item" data-i18n="sb3.inc5">Plánování a publikování</div>
     </div>
-    <a href="kontakt.html" class="sb-cta">Poptat &#x2197;&#xFE0E;</a>
+    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat ↗</a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;"><img src="yournia-4.jpg" alt="Lifestyle fotografie šperků pro sociální sítě a Instagram" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
     <div class="sb-price">
-      <div class="sb-price-label">Cena od</div>
+      <div class="sb-price-label" data-i18n="sb.price.label">Cena od</div>
       <div class="sb-price-value">5 000 Kč</div>
-      <div class="sb-price-note">Měsíční spolupráce — cena dle rozsahu</div>
+      <div class="sb-price-note" data-i18n="sb3.price.note">Měsíční spolupráce — cena dle rozsahu</div>
     </div>
   </div>
 </div>
@@ -304,24 +313,24 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 <div class="service-block">
   <div class="sb-left">
     <div class="sb-num">04</div>
-    <div class="sb-title">Nemovitosti<br><em>& architektura</em></div>
-    <p class="sb-desc">Profesionální fotografie interiérů, exteriérů a architektonických projektů. Pro realitní kanceláře, developery i architekty.</p>
+    <div class="sb-title" data-i18n="sb4.title">Nemovitosti<br><em>& architektura</em></div>
+    <p class="sb-desc" data-i18n="sb4.desc">Profesionální fotografie interiérů, exteriérů a architektonických projektů. Pro realitní kanceláře, developery i architekty.</p>
     <div class="sb-includes">
-      <div class="sb-include-item">Interiérová a exteriérová fotografie</div>
-      <div class="sb-include-item">HDR zpracování</div>
-      <div class="sb-include-item">Letecké záběry (dron)</div>
-      <div class="sb-include-item">Půdorysy</div>
-      <div class="sb-include-item">Vizualizace interiéru</div>
-      <div class="sb-include-item">Rychlé dodání do 48 hodin</div>
+      <div class="sb-include-item" data-i18n="sb4.inc1">Interiérová a exteriérová fotografie</div>
+      <div class="sb-include-item" data-i18n="sb4.inc2">HDR zpracování</div>
+      <div class="sb-include-item" data-i18n="sb4.inc3">Letecké záběry (dron)</div>
+      <div class="sb-include-item" data-i18n="sb4.inc4">Půdorysy</div>
+      <div class="sb-include-item" data-i18n="sb4.inc5">Vizualizace interiéru</div>
+      <div class="sb-include-item" data-i18n="sb4.inc6">Rychlé dodání do 48 hodin</div>
     </div>
-    <a href="kontakt.html" class="sb-cta">Poptat &#x2197;&#xFE0E;</a>
+    <a href="kontakt.html" class="sb-cta" data-i18n="sb.cta">Poptat ↗</a>
   </div>
   <div class="sb-right">
     <div class="sb-visual" style="padding:0;overflow:hidden;"><img src="nemovitost-1.jpg" alt="Profesionální fotografie nemovitosti a interiérů Plzeň" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
     <div class="sb-price">
-      <div class="sb-price-label">Cena od</div>
+      <div class="sb-price-label" data-i18n="sb.price.label">Cena od</div>
       <div class="sb-price-value">4 000 Kč</div>
-      <div class="sb-price-note">Závisí na velikosti nemovitosti</div>
+      <div class="sb-price-note" data-i18n="sb4.price.note">Závisí na velikosti nemovitosti</div>
     </div>
   </div>
 </div>
@@ -329,36 +338,36 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 <!-- PROCESS -->
 <div class="process">
   <div class="process-header">
-    <div class="ph-eyebrow" style="animation:none">Jak to funguje</div>
-    <div style="font-family:var(--font-display);font-size:clamp(36px,4vw,56px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;color:var(--black)">Jak <em style="font-weight:300;font-style:italic">spolupracujeme</em></div>
+    <div class="ph-eyebrow" style="animation:none"><span data-i18n="process.eyebrow">Jak to funguje</span></div>
+    <div style="font-family:var(--font-display);font-size:clamp(36px,4vw,56px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;color:var(--black)"><span data-i18n="process.title">Jak <em style="font-weight:300;font-style:italic">spolupracujeme</em></span></div>
   </div>
   <div class="process-steps">
     <div class="process-step">
       <div class="ps-num">01</div>
-      <div class="ps-title">Poptávka</div>
-      <div class="ps-desc">Napíšete mi nebo zavoláte. Probereme váš projekt, cíle a termíny. Do 24 hodin se ozvu s odpovědí.</div>
+      <div class="ps-title" data-i18n="ps1.title">Poptávka</div>
+      <div class="ps-desc" data-i18n="ps1.desc">Napíšete mi nebo zavoláte. Probereme váš projekt, cíle a termíny. Do 24 hodin se ozvu s odpovědí.</div>
     </div>
     <div class="process-step">
       <div class="ps-num">02</div>
-      <div class="ps-title">Příprava</div>
-      <div class="ps-desc">Domluvíme termín, místo a detaily. Připravím vybavení a plán focení tak, aby vše proběhlo hladce.</div>
+      <div class="ps-title" data-i18n="ps2.title">Příprava</div>
+      <div class="ps-desc" data-i18n="ps2.desc">Domluvíme termín, místo a detaily. Připravím vybavení a plán focení tak, aby vše proběhlo hladce.</div>
     </div>
     <div class="process-step">
       <div class="ps-num">03</div>
-      <div class="ps-title">Realizace</div>
-      <div class="ps-desc">Focení nebo natáčení na místě. Profesionální přístup, flexibilita a výsledky, které předčí očekávání.</div>
+      <div class="ps-title" data-i18n="ps3.title">Realizace</div>
+      <div class="ps-desc" data-i18n="ps3.desc">Focení nebo natáčení na místě. Profesionální přístup, flexibilita a výsledky, které předčí očekávání.</div>
     </div>
     <div class="process-step">
       <div class="ps-num">04</div>
-      <div class="ps-title">Dodání</div>
-      <div class="ps-desc">Hotové soubory ve všech potřebných formátech doručím typicky do 5–7 pracovních dní.</div>
+      <div class="ps-title" data-i18n="ps4.title">Dodání</div>
+      <div class="ps-desc" data-i18n="ps4.desc">Hotové soubory ve všech potřebných formátech doručím typicky do 5–7 pracovních dní.</div>
     </div>
   </div>
 </div>
 
 <div class="cta-strip">
-  <div class="cs-title">Máte projekt?<br><em>Pojďme na to.</em></div>
-  <a href="kontakt.html" class="cs-btn">Nezávazně poptat &#x2197;&#xFE0E;</a>
+  <div class="cs-title" data-i18n="cta.strip.title">Máte projekt?<br><em>Pojďme na to.</em></div>
+  <a href="kontakt.html" class="cs-btn" data-i18n="cta.strip.btn">Nezávazně poptat ↗</a>
 </div>
 
 <footer>
@@ -379,5 +388,6 @@ document.querySelectorAll('a,button').forEach(el=>{
 const burger=document.getElementById('navBurger'),mobileNav=document.getElementById('navMobile');
 if(burger&&mobileNav){burger.addEventListener('click',()=>{burger.classList.toggle('open');mobileNav.classList.toggle('open')});mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mobileNav.classList.remove('open')}))}
 </script>
+<script src="lang.js"></script>
 </body>
 </html>

@@ -191,6 +191,13 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
 .lang-btn:hover,.lang-btn.active{color:var(--black)}
 .lang-sep{font-size:8px;color:var(--light);pointer-events:none;line-height:1}
 @media(max-width:768px){.lang-switcher{margin-right:10px}}
+.sb-mobile-play{display:none;position:absolute;inset:0;align-items:center;justify-content:center;z-index:2;text-decoration:none}
+.sb-mobile-play svg{filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+@media(max-width:768px){
+  .sb-visual iframe{display:none}
+  .sb-visual{background:url(https://img.youtube.com/vi/9rOmsWmm4yw/hqdefault.jpg) center/cover no-repeat;padding-top:56.25%!important}
+  .sb-mobile-play{display:flex}
+}
 </style>
 </head>
 <body>
@@ -275,6 +282,9 @@ footer{background:var(--black);border-top:1px solid rgba(255,255,255,.06);paddin
         allowfullscreen
         style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.78%;height:177.78%;min-width:100%;min-height:100%;pointer-events:none;"
       ></iframe>
+      <a class="sb-mobile-play" href="https://www.youtube.com/watch?v=9rOmsWmm4yw" target="_blank" rel="noopener" aria-label="Přehrát video">
+        <svg viewBox="0 0 68 48" width="72" height="51"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20z" fill="white"/></svg>
+      </a>
     </div>
     <div class="sb-price">
       <div class="sb-price-label" data-i18n="sb.price.label">Cena od</div>
